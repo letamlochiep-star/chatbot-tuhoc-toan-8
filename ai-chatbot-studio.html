@@ -293,7 +293,7 @@
     <!-- Center Navigation Chips / Persona -->
     <div class="hidden lg:flex items-center gap-1.5 p-1 bg-slate-100/80 dark:bg-dark-surface rounded-2xl border border-slate-200 dark:border-dark-border">
       <button onclick="changePersona('teacher')" id="btn-persona-teacher" class="px-3 py-1.5 rounded-xl font-bold text-xs bg-white dark:bg-dark-card text-slate-900 dark:text-white shadow-lux-sm transition">
-        👨‍🏫 Thầy Giáo Chuẩn Mực
+        👨‍🏫 Thầy Lê Tâm (Trợ Lý Toán 8)
       </button>
       <button onclick="changePersona('peer')" id="btn-persona-peer" class="px-3 py-1.5 rounded-xl font-bold text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
         🧑‍🎓 Bạn Học Cùng Tiến
@@ -467,7 +467,7 @@
       <div class="h-12 border-b border-slate-100 dark:border-dark-border px-5 sm:px-7 flex items-center justify-between shrink-0 bg-slate-50/50 dark:bg-dark-surface/50">
         <div class="flex items-center gap-2 text-xs">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span class="font-extrabold text-slate-800 dark:text-white" id="bot-display-name">AI Math Studio 8 Pro (Thầy Giáo Sư Phạm)</span>
+          <span class="font-extrabold text-slate-800 dark:text-white" id="bot-display-name">Thầy Lê Tâm • Trợ Lý Toán 8 (THCS Quang Trung - Đà Lạt)</span>
           <span class="text-slate-400 font-mono text-[11px] hidden sm:inline">• GDPT 2018 NXBGDVN</span>
         </div>
 
@@ -876,14 +876,14 @@
       <div class="space-y-2 pt-2" id="google-account-list">
         <!-- Account 1: Thầy Giáo Viên -->
         <button 
-          onclick="selectGoogleAccount('Thầy Trần Văn Minh', 'letamlochiep@gmail.com', 'teacher', 'THCS Chu Văn An', 'Tổ Toán - THCS')" 
+          onclick="selectGoogleAccount('Thầy Lê Tâm', 'letamlochiep@gmail.com', 'teacher', 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt', 'Tổ Toán THCS')" 
           class="w-full p-3 rounded-2xl border border-slate-200 dark:border-dark-border hover:border-purple-500 bg-slate-50/70 dark:bg-dark-surface hover:bg-purple-50/40 dark:hover:bg-purple-950/30 flex items-center gap-3 transition text-left group active:scale-98"
         >
           <div class="w-10 h-10 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-sm shadow-xs">
-            TM
+            LT
           </div>
           <div class="flex-1 min-w-0">
-            <div class="font-extrabold text-xs text-slate-900 dark:text-white truncate">Thầy Trần Văn Minh (Giáo Viên)</div>
+            <div class="font-extrabold text-xs text-slate-900 dark:text-white truncate">Thầy Lê Tâm (Giáo Viên Toán)</div>
             <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">letamlochiep@gmail.com</div>
           </div>
           <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">Giáo Viên</span>
@@ -891,7 +891,7 @@
 
         <!-- Account 2: Học Sinh 1 -->
         <button 
-          onclick="selectGoogleAccount('Nguyễn Hoàng Nam', 'hoangnam.math8@gmail.com', 'student', 'THCS Chu Văn An', '8A1')" 
+          onclick="selectGoogleAccount('Nguyễn Hoàng Nam', 'hoangnam.math8@gmail.com', 'student', 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt', '8A1')" 
           class="w-full p-3 rounded-2xl border border-slate-200 dark:border-dark-border hover:border-blue-500 bg-slate-50/70 dark:bg-dark-surface hover:bg-blue-50/40 dark:hover:bg-blue-950/30 flex items-center gap-3 transition text-left group active:scale-98"
         >
           <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm shadow-xs">
@@ -906,14 +906,14 @@
 
         <!-- Account 3: Học Sinh 2 -->
         <button 
-          onclick="selectGoogleAccount('Lê Khánh Huyền', 'khanhhuyen.math8@gmail.com', 'student', 'THCS Giảng Võ', '8B2')" 
+          onclick="selectGoogleAccount('Lê Khánh Huyền', 'khanhhuyen.math8@gmail.com', 'student', 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt', '8A2')" 
           class="w-full p-3 rounded-2xl border border-slate-200 dark:border-dark-border hover:border-emerald-500 bg-slate-50/70 dark:bg-dark-surface hover:bg-emerald-50/40 dark:hover:bg-emerald-950/30 flex items-center gap-3 transition text-left group active:scale-98"
         >
           <div class="w-10 h-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-sm shadow-xs">
             KH
           </div>
           <div class="flex-1 min-w-0">
-            <div class="font-extrabold text-xs text-slate-900 dark:text-white truncate">Lê Khánh Huyền (Lớp 8B2)</div>
+            <div class="font-extrabold text-xs text-slate-900 dark:text-white truncate">Lê Khánh Huyền (Lớp 8A2)</div>
             <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">khanhhuyen.math8@gmail.com</div>
           </div>
           <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">Học Sinh</span>
@@ -1288,7 +1288,7 @@
           </div>
           <div>
             <label class="font-bold text-slate-700 dark:text-slate-300 block mb-1">Trường THCS:</label>
-            <input type="text" id="prof-school-input" placeholder="THCS Chu Văn An" class="w-full bg-slate-50 dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-2xl p-3 font-bold text-slate-900 dark:text-white outline-none focus:border-emerald-500" />
+            <input type="text" id="prof-school-input" placeholder="Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt" class="w-full bg-slate-50 dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-2xl p-3 font-bold text-slate-900 dark:text-white outline-none focus:border-emerald-500" />
           </div>
         </div>
       </div>
@@ -2086,7 +2086,7 @@
     let studentProfile = {
       name: 'Nguyễn Hoàng Nam',
       grade: '8A1',
-      school: 'THCS Chu Văn An'
+      school: 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt'
     };
 
     // Quiz Analytics State in LocalStorage
@@ -2323,8 +2323,8 @@
       const email = document.getElementById('google-custom-email').value.trim();
       const role = document.querySelector('input[name="google_custom_role"]:checked')?.value || 'student';
       const name = email.split('@')[0];
-      const school = role === 'teacher' ? 'THCS Chu Văn An' : 'Trường THCS';
-      const grade = role === 'teacher' ? 'Tổ Toán' : '8A1';
+      const school = role === 'teacher' ? 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt' : 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt';
+      const grade = role === 'teacher' ? 'Tổ Toán THCS' : '8A1';
       selectGoogleAccount(name, email, role, school, grade);
     }
 
@@ -2356,7 +2356,7 @@
           name: name,
           role: role,
           grade: '8A1',
-          school: 'THCS Chu Văn An',
+          school: 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt',
           authProvider: 'apple',
           createdAt: now.toISOString(),
           trialExpiresAt: trialExpires,
@@ -2403,7 +2403,7 @@
           name: name,
           role: role,
           grade: '8A1',
-          school: 'THCS Chu Văn An',
+          school: 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt',
           authProvider: 'microsoft',
           createdAt: now.toISOString(),
           trialExpiresAt: trialExpires,
@@ -2494,7 +2494,7 @@
         name: name,
         role: role,
         grade: '8A1',
-        school: 'THCS Chu Văn An',
+        school: 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt',
         authProvider: 'phone',
         createdAt: now.toISOString(),
         trialExpiresAt: trialExpires,
@@ -2528,7 +2528,7 @@
         name: name,
         role: authSelectedRole,
         grade: '8A1',
-        school: 'THCS Chu Văn An',
+        school: 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt',
         authProvider: 'email',
         createdAt: now.toISOString(),
         trialExpiresAt: trialExpires,
@@ -2681,7 +2681,20 @@
     function loadStudentProfile() {
       try {
         const saved = localStorage.getItem('ai_math_student_profile_v2');
-        if (saved) studentProfile = JSON.parse(saved);
+        if (saved) {
+          studentProfile = JSON.parse(saved);
+          if (!studentProfile.school || studentProfile.school.includes('Chu Văn An') || studentProfile.school === 'Trường THCS') {
+            studentProfile.school = 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt';
+            localStorage.setItem('ai_math_student_profile_v2', JSON.stringify(studentProfile));
+          }
+        } else {
+          studentProfile = {
+            name: 'Nguyễn Hoàng Nam',
+            grade: '8A1',
+            school: 'Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt'
+          };
+          localStorage.setItem('ai_math_student_profile_v2', JSON.stringify(studentProfile));
+        }
         updateProfileDisplayUI();
       } catch (e) {}
     }
@@ -3768,8 +3781,8 @@
         if (nameEl) nameEl.innerText = 'AI Math Studio 8 (Cô Giáo Dịu Dàng)';
         showToast('info', 'Đổi vai trò: Cô Giáo Dịu Dàng', 'AI sẽ ân cần hướng dẫn từng bước nhỏ và khen ngợi tiến bộ!');
       } else {
-        if (nameEl) nameEl.innerText = 'AI Math Studio 8 Pro (Thầy Giáo Sư Phạm)';
-        showToast('info', 'Đổi vai trò: Thầy Giáo Chuẩn Mực', 'AI sẽ giảng dạy nghiêm túc, chuẩn mực Socratic 4 bước.');
+        if (nameEl) nameEl.innerText = 'Thầy Lê Tâm • Trợ Lý Toán 8 (THCS Quang Trung - Đà Lạt)';
+        showToast('info', 'Vai trò: Thầy Lê Tâm (Trợ Lý Toán 8)', 'Thầy Lê Tâm sẽ hỗ trợ các em học sinh Trường THCS Quang Trung - Đà Lạt học tập tận tình.');
       }
     }
 
@@ -4467,7 +4480,7 @@
     }
 
     function buildAssembledSystemPrompt() {
-      let personaPrompt = 'Bạn là Thầy giáo Toán nghiêm túc, chuẩn mực, áp dụng Socratic 4 bước trên cổng tailieugdso.vn.';
+      let personaPrompt = 'Bạn là Thầy Lê Tâm - Trợ lý Sư phạm hỗ trợ học sinh học tập môn Toán 8 tại Trường THCS Quang Trung - Phường Xuân Hương - Đà Lạt. Hãy luôn xưng "Thầy", gọi học sinh là "Em" hoặc "các em học sinh Trường THCS Quang Trung - Đà Lạt", luôn ân cần, kiên nhẫn, chuẩn mực, áp dụng phương pháp Socratic 4 bước để khích lệ học sinh tự học trên cổng tailieugdso.vn.';
       if (state.activePersona === 'peer') {
         personaPrompt = 'Bạn là một Bạn Học Cùng Tiến lớp 8 thông minh, nhiệt tình trên tailieugdso.vn. Hãy xưng "Mình - Bạn", nói chuyện vui tươi, cùng đố vui, giải toán và động viên bạn cùng tiến bộ.';
       } else if (state.activePersona === 'gentle') {
