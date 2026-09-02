@@ -852,6 +852,241 @@
   </div>
 
   <!-- ========================================== -->
+  <!-- MODAL: GOOGLE ACCOUNT CHOOSER (OAUTH 2.0 SIMULATION) -->
+  <!-- ========================================== -->
+  <div id="google-oauth-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs hidden flex items-center justify-center p-4 animate-in fade-in duration-200">
+    <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border w-full max-w-[440px] rounded-[2rem] p-6 sm:p-7 shadow-2xl space-y-4 relative">
+      <button type="button" onclick="closeAllAuthModals()" class="absolute top-5 right-5 p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Google Branding Header -->
+      <div class="text-center space-y-1.5 pt-1">
+        <svg class="w-8 h-8 mx-auto" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Chọn một tài khoản</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400">để tiếp tục đến <strong>AI Math Studio 8 (tailieugdso.vn)</strong></p>
+      </div>
+
+      <!-- Account List Options -->
+      <div class="space-y-2 pt-2" id="google-account-list">
+        <!-- Account 1: Thầy Giáo Viên -->
+        <button 
+          onclick="selectGoogleAccount('Thầy Trần Văn Minh', 'letamlochiep@gmail.com', 'teacher', 'THCS Chu Văn An', 'Tổ Toán - THCS')" 
+          class="w-full p-3 rounded-2xl border border-slate-200 dark:border-dark-border hover:border-purple-500 bg-slate-50/70 dark:bg-dark-surface hover:bg-purple-50/40 dark:hover:bg-purple-950/30 flex items-center gap-3 transition text-left group active:scale-98"
+        >
+          <div class="w-10 h-10 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-sm shadow-xs">
+            TM
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="font-extrabold text-xs text-slate-900 dark:text-white truncate">Thầy Trần Văn Minh (Giáo Viên)</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">letamlochiep@gmail.com</div>
+          </div>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">Giáo Viên</span>
+        </button>
+
+        <!-- Account 2: Học Sinh 1 -->
+        <button 
+          onclick="selectGoogleAccount('Nguyễn Hoàng Nam', 'hoangnam.math8@gmail.com', 'student', 'THCS Chu Văn An', '8A1')" 
+          class="w-full p-3 rounded-2xl border border-slate-200 dark:border-dark-border hover:border-blue-500 bg-slate-50/70 dark:bg-dark-surface hover:bg-blue-50/40 dark:hover:bg-blue-950/30 flex items-center gap-3 transition text-left group active:scale-98"
+        >
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm shadow-xs">
+            HN
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="font-extrabold text-xs text-slate-900 dark:text-white truncate">Nguyễn Hoàng Nam (Lớp 8A1)</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">hoangnam.math8@gmail.com</div>
+          </div>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300">Học Sinh</span>
+        </button>
+
+        <!-- Account 3: Học Sinh 2 -->
+        <button 
+          onclick="selectGoogleAccount('Lê Khánh Huyền', 'khanhhuyen.math8@gmail.com', 'student', 'THCS Giảng Võ', '8B2')" 
+          class="w-full p-3 rounded-2xl border border-slate-200 dark:border-dark-border hover:border-emerald-500 bg-slate-50/70 dark:bg-dark-surface hover:bg-emerald-50/40 dark:hover:bg-emerald-950/30 flex items-center gap-3 transition text-left group active:scale-98"
+        >
+          <div class="w-10 h-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-sm shadow-xs">
+            KH
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="font-extrabold text-xs text-slate-900 dark:text-white truncate">Lê Khánh Huyền (Lớp 8B2)</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">khanhhuyen.math8@gmail.com</div>
+          </div>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">Học Sinh</span>
+        </button>
+
+        <!-- Account 4: Nhập tài khoản khác -->
+        <button 
+          onclick="toggleCustomGoogleInput()" 
+          class="w-full p-3 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 hover:border-blue-500 bg-white dark:bg-dark-surface flex items-center gap-3 transition text-left text-slate-700 dark:text-slate-300 active:scale-98"
+        >
+          <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center font-bold text-base">
+            ＋
+          </div>
+          <div class="font-bold text-xs">Sử dụng một tài khoản khác...</div>
+        </button>
+      </div>
+
+      <!-- Custom Google Input Form (Expandable) -->
+      <form id="google-custom-form" onsubmit="handleCustomGoogleSubmit(event)" class="hidden space-y-2.5 pt-2 border-t border-slate-100 dark:border-dark-border text-xs">
+        <div>
+          <label class="font-bold text-slate-700 dark:text-slate-300 block text-[11px] mb-1">Email hoặc số điện thoại Google:</label>
+          <input type="email" id="google-custom-email" required placeholder="tentaikhoan@gmail.com" class="w-full py-2.5 px-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-dark-surface font-medium outline-none focus:border-blue-500" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 dark:text-slate-300 block text-[11px] mb-1">Mật khẩu Google:</label>
+          <input type="password" id="google-custom-pwd" required placeholder="••••••••" class="w-full py-2.5 px-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-dark-surface font-medium outline-none focus:border-blue-500" />
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <label class="flex items-center gap-1.5 p-2 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+            <input type="radio" name="google_custom_role" value="student" checked />
+            <span class="font-bold">🧑‍🎓 Học Sinh</span>
+          </label>
+          <label class="flex items-center gap-1.5 p-2 rounded-xl border border-slate-200 dark:border-dark-border cursor-pointer">
+            <input type="radio" name="google_custom_role" value="teacher" />
+            <span class="font-bold">👨‍🏫 Giáo Viên</span>
+          </label>
+        </div>
+        <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition">
+          Tiếp tục
+        </button>
+      </form>
+
+      <div class="text-[11px] text-slate-400 dark:text-slate-500 text-center leading-relaxed pt-2">
+        Để tiếp tục, Google sẽ chia sẻ tên, địa chỉ email và ảnh hồ sơ của bạn với AI Math 8.
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: APPLE ID AUTHENTICATION -->
+  <!-- ========================================== -->
+  <div id="apple-auth-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs hidden flex items-center justify-center p-4 animate-in fade-in duration-200">
+    <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border w-full max-w-[420px] rounded-[2rem] p-6 sm:p-7 shadow-2xl space-y-4 relative">
+      <button type="button" onclick="closeAllAuthModals()" class="absolute top-5 right-5 p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="text-center space-y-1 pt-1">
+        <svg class="w-9 h-9 mx-auto fill-current text-slate-900 dark:text-white" viewBox="0 0 170 170">
+          <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.08-7.71-7.85-12.04-14.3-6.53-9.67-11.66-20.6-15.39-32.78-3.73-12.18-5.6-23.75-5.6-34.72 0-14.47 3.65-26.65 10.96-36.54 7.31-9.89 16.54-14.94 27.69-15.17 4.89 0 10.36 1.3 16.4 3.91 6.04 2.61 10.22 3.96 12.54 4.07 2.09 0 6.64-1.46 13.65-4.37 7.01-2.92 12.98-4.14 17.91-3.68 13.44.87 23.95 6.04 31.52 15.53-11.83 7.18-17.63 17.07-17.41 29.68.22 9.89 4.02 18.26 11.4 25.11 7.39 6.85 16.19 10.65 26.4 11.41-2.28 7.07-5.06 14.19-8.34 21.36zM119.22 33.05c0-7.39 2.66-14.41 7.99-21.05 5.33-6.63 11.96-10.93 19.89-12.9 1.09 7.61-.92 14.89-6.03 21.84-5.11 6.96-11.95 11.39-20.52 13.3-.33-.39-.77-.79-1.33-1.19z"/>
+        </svg>
+        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Đăng nhập bằng Apple ID</h3>
+        <p class="text-xs text-slate-500">Sử dụng Apple ID để truy cập AI Math 8</p>
+      </div>
+
+      <form onsubmit="handleAppleSubmit(event)" class="space-y-3 text-xs pt-1">
+        <div>
+          <label class="font-bold text-slate-700 dark:text-slate-300 block text-[11px] mb-1">Apple ID:</label>
+          <input type="text" id="apple-id-input" required placeholder="name@icloud.com / SĐT" class="w-full py-2.5 px-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-dark-surface font-medium outline-none focus:border-slate-900 dark:focus:border-white" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 dark:text-slate-300 block text-[11px] mb-1">Mật khẩu:</label>
+          <input type="password" id="apple-pwd-input" required placeholder="••••••••" class="w-full py-2.5 px-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-dark-surface font-medium outline-none focus:border-slate-900 dark:focus:border-white" />
+        </div>
+        <div class="flex items-center justify-between text-[11px]">
+          <label class="flex items-center gap-1.5 cursor-pointer text-slate-600 dark:text-slate-400">
+            <input type="checkbox" checked />
+            <span>Ẩn địa chỉ email của tôi</span>
+          </label>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold transition active:scale-98 shadow-xs">
+          Đăng nhập với Apple
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: MICROSOFT ACCOUNT AUTHENTICATION -->
+  <!-- ========================================== -->
+  <div id="microsoft-auth-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs hidden flex items-center justify-center p-4 animate-in fade-in duration-200">
+    <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border w-full max-w-[420px] rounded-[2rem] p-6 sm:p-7 shadow-2xl space-y-4 relative">
+      <button type="button" onclick="closeAllAuthModals()" class="absolute top-5 right-5 p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="space-y-1 pt-1">
+        <div class="flex items-center gap-2">
+          <svg class="w-6 h-6" viewBox="0 0 21 21">
+            <rect x="1" y="1" width="9" height="9" fill="#f25022"/>
+            <rect x="11" y="1" width="9" height="9" fill="#7fba00"/>
+            <rect x="1" y="11" width="9" height="9" fill="#00a4ef"/>
+            <rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+          </svg>
+          <span class="font-extrabold text-sm text-slate-800 dark:text-slate-200">Microsoft</span>
+        </div>
+        <h3 class="font-extrabold text-xl text-slate-900 dark:text-white">Đăng nhập</h3>
+        <p class="text-xs text-slate-500">Tài khoản trường học, cơ quan hoặc cá nhân</p>
+      </div>
+
+      <form onsubmit="handleMicrosoftSubmit(event)" class="space-y-3 text-xs pt-1">
+        <div>
+          <input type="text" id="ms-account-input" required placeholder="Email, điện thoại hoặc Skype" class="w-full py-2.5 px-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-dark-surface font-medium outline-none focus:border-blue-600" />
+        </div>
+        <div>
+          <input type="password" id="ms-pwd-input" required placeholder="Mật khẩu" class="w-full py-2.5 px-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-dark-surface font-medium outline-none focus:border-blue-600" />
+        </div>
+        <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition">
+          Tiếp theo
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: PHONE OTP AUTHENTICATION -->
+  <!-- ========================================== -->
+  <div id="phone-auth-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs hidden flex items-center justify-center p-4 animate-in fade-in duration-200">
+    <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border w-full max-w-[420px] rounded-[2rem] p-6 sm:p-7 shadow-2xl space-y-4 relative">
+      <button type="button" onclick="closeAllAuthModals()" class="absolute top-5 right-5 p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="text-center space-y-1.5 pt-1">
+        <div class="w-12 h-12 mx-auto rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl shadow-xs">
+          📞
+        </div>
+        <h3 class="font-bold text-lg text-slate-900 dark:text-white" id="phone-modal-title">Đăng nhập bằng Số Điện Thoại</h3>
+        <p class="text-xs text-slate-500" id="phone-modal-desc">Nhập số điện thoại để nhận mã xác thực OTP nhanh</p>
+      </div>
+
+      <!-- Step 1: Input Phone -->
+      <form id="phone-step-1" onsubmit="handleSendPhoneOtp(event)" class="space-y-3 text-xs pt-1">
+        <div>
+          <label class="font-bold text-slate-700 dark:text-slate-300 block text-[11px] mb-1">Số điện thoại (+84):</label>
+          <div class="flex items-center rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-dark-surface overflow-hidden">
+            <span class="px-3 py-2.5 bg-slate-100 dark:bg-slate-800 font-bold text-slate-600 dark:text-slate-300 border-r border-slate-200 dark:border-slate-700">+84</span>
+            <input type="tel" id="phone-number-input" required placeholder="0988 123 456" class="flex-1 py-2.5 px-3 bg-transparent font-bold outline-none text-slate-900 dark:text-white" />
+          </div>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition active:scale-98 shadow-xs">
+          Gửi Mã Xác Thực OTP
+        </button>
+      </form>
+
+      <!-- Step 2: Input OTP (Hidden by default) -->
+      <form id="phone-step-2" onsubmit="handleVerifyPhoneOtp(event)" class="hidden space-y-3 text-xs pt-1">
+        <div>
+          <label class="font-bold text-slate-700 dark:text-slate-300 block text-[11px] mb-1">Mã OTP 6 số:</label>
+          <input type="text" id="phone-otp-input" maxlength="6" required placeholder="888888" class="w-full py-3 px-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/40 text-center font-mono font-black text-lg tracking-widest text-slate-900 dark:text-white outline-none" />
+        </div>
+        <div class="flex items-center justify-between text-[11px] text-slate-500">
+          <span>Mã hết hạn trong: <strong id="otp-timer" class="text-emerald-600 font-mono">60s</strong></span>
+          <button type="button" onclick="handleSendPhoneOtp(event)" class="text-emerald-600 font-bold hover:underline">Gửi lại mã</button>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition active:scale-98 shadow-xs">
+          Xác Thực & Vào Học Ngay
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
   <!-- MODAL: HƯỚNG DẪN LẤY GOOGLE API KEY CHO GIÁO VIÊN -->
   <!-- ========================================== -->
   <div id="teacher-guide-modal" class="fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-xs hidden flex items-center justify-center p-4">
@@ -1979,18 +2214,30 @@
       lucide.createIcons();
     }
 
+    function closeAllAuthModals() {
+      const modals = ['auth-modal', 'google-oauth-modal', 'apple-auth-modal', 'microsoft-auth-modal', 'phone-auth-modal'];
+      modals.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+      lucide.createIcons();
+    }
+
     function openAuthModal(mode = 'login') {
       authMode = mode;
-      toggleAuthModal();
+      closeAllAuthModals();
+      const modal = document.getElementById('auth-modal');
+      if (modal) modal.classList.remove('hidden');
+      lucide.createIcons();
     }
 
     function handleHeaderAuthClick() {
       if (currentUser) {
         const roleStr = currentUser.role === 'student' ? 'Học Sinh (Free Admin Key 30 câu/60p)' : 'Giáo Viên (Dùng thử 5 ngày)';
-        const act = confirm(`👤 THÔNG TIN TÀI KHOẢN:\n\n• Họ & Tên: ${currentUser.name}\n• Email: ${currentUser.email}\n• Vai trò: ${roleStr}\n• Trường: ${currentUser.school || 'THCS'}\n\n👉 Bấm [OK] nếu bạn muốn ĐĂNG XUẤT tài khoản này.`);
+        const act = confirm(`👤 THÔNG TIN TÀI KHOẢN ĐANG ĐĂNG NHẬP:\n\n• Họ & Tên: ${currentUser.name}\n• Email/ID: ${currentUser.email}\n• Vai trò: ${roleStr}\n• Trường: ${currentUser.school || 'THCS'}\n\n👉 Bấm [OK] nếu bạn muốn ĐĂNG XUẤT tài khoản này.`);
         if (act) logoutUser();
       } else {
-        toggleAuthModal();
+        openAuthModal('login');
       }
     }
 
@@ -2014,114 +2261,227 @@
       }
     }
 
+    // ==========================================
+    // 1. GOOGLE OAUTH 2.0 WORKFLOW
+    // ==========================================
     function handleGoogleSignIn() {
-      const email = `google.user${Math.floor(Math.random()*9000)+1000}@gmail.com`;
-      const name = authSelectedRole === 'teacher' ? 'Thầy Nguyễn Văn An' : 'Học Sinh Google';
-      const role = authSelectedRole || 'student';
-      
-      const now = new Date();
-      const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
-
-      currentUser = {
-        id: 'usr_g_' + Date.now(),
-        email: email,
-        name: name,
-        role: role,
-        grade: '8A1',
-        school: 'THCS Chu Văn An',
-        createdAt: now.toISOString(),
-        trialExpiresAt: trialExpires,
-        userApiKey: '',
-        quota: { count: 0, windowStart: Date.now() }
-      };
-
-      studentProfile.name = name;
-      studentProfile.grade = '8A1';
-      studentProfile.school = 'THCS Chu Văn An';
-      try { localStorage.setItem('ai_math_student_profile_v2', JSON.stringify(studentProfile)); } catch(e){}
-
-      saveCurrentUser();
-      updateAuthHeaderUI();
-      updateProfileDisplayUI();
-      toggleAuthModal();
-
-      confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
-      if (role === 'teacher') {
-        showToast('success', 'Đăng nhập Google thành công! 👨‍🏫', `Chào mừng Thầy/Cô! Thầy/Cô có 5 ngày dùng thử miễn phí.`);
-        setTimeout(toggleTeacherGuideModal, 600);
-      } else {
-        showToast('success', 'Đăng nhập Google thành công! 🧑‍🎓', `Chào em! Em được cấp sẵn API Key Admin với 30 câu hỏi / 60 phút.`);
-      }
+      closeAllAuthModals();
+      const modal = document.getElementById('google-oauth-modal');
+      if (modal) modal.classList.remove('hidden');
+      lucide.createIcons();
     }
 
+    function selectGoogleAccount(name, email, role, school, grade) {
+      showToast('info', 'Đang kết nối Google...', `Đang xác thực tài khoản ${email}...`);
+      
+      setTimeout(() => {
+        const now = new Date();
+        const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
+
+        currentUser = {
+          id: 'usr_g_' + Date.now(),
+          email: email,
+          name: name,
+          role: role,
+          grade: grade,
+          school: school,
+          authProvider: 'google',
+          createdAt: now.toISOString(),
+          trialExpiresAt: trialExpires,
+          userApiKey: '',
+          quota: { count: 0, windowStart: Date.now() }
+        };
+
+        studentProfile.name = name;
+        studentProfile.grade = grade;
+        studentProfile.school = school;
+        try { localStorage.setItem('ai_math_student_profile_v2', JSON.stringify(studentProfile)); } catch(e){}
+
+        saveCurrentUser();
+        updateAuthHeaderUI();
+        updateProfileDisplayUI();
+        closeAllAuthModals();
+
+        confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+        if (role === 'teacher') {
+          showToast('success', 'Đăng nhập Google thành công! 👨‍🏫', `Chào mừng ${name}! Thầy/Cô có 5 ngày dùng thử miễn phí.`);
+          setTimeout(toggleTeacherGuideModal, 600);
+        } else {
+          showToast('success', 'Đăng nhập Google thành công! 🧑‍🎓', `Chào em ${name}! Em được cấp sẵn API Key Admin (30 câu / 60 phút).`);
+        }
+      }, 500);
+    }
+
+    function toggleCustomGoogleInput() {
+      const form = document.getElementById('google-custom-form');
+      if (form) form.classList.toggle('hidden');
+    }
+
+    function handleCustomGoogleSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('google-custom-email').value.trim();
+      const role = document.querySelector('input[name="google_custom_role"]:checked')?.value || 'student';
+      const name = email.split('@')[0];
+      const school = role === 'teacher' ? 'THCS Chu Văn An' : 'Trường THCS';
+      const grade = role === 'teacher' ? 'Tổ Toán' : '8A1';
+      selectGoogleAccount(name, email, role, school, grade);
+    }
+
+    // ==========================================
+    // 2. APPLE ID WORKFLOW
+    // ==========================================
     function handleAppleSignIn() {
-      const email = `apple.user${Math.floor(Math.random()*9000)+1000}@icloud.com`;
-      const name = authSelectedRole === 'teacher' ? 'Cô Trần Thị Mai' : 'Học Sinh Apple';
-      const role = authSelectedRole || 'student';
-      
-      const now = new Date();
-      const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
-
-      currentUser = {
-        id: 'usr_apple_' + Date.now(),
-        email: email,
-        name: name,
-        role: role,
-        grade: '8A1',
-        school: 'THCS Chu Văn An',
-        createdAt: now.toISOString(),
-        trialExpiresAt: trialExpires,
-        userApiKey: '',
-        quota: { count: 0, windowStart: Date.now() }
-      };
-
-      saveCurrentUser();
-      updateAuthHeaderUI();
-      toggleAuthModal();
-
-      confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
-      showToast('success', 'Đăng nhập Apple thành công! 🍏', `Chào mừng ${name}!`);
-      if (role === 'teacher') setTimeout(toggleTeacherGuideModal, 600);
+      closeAllAuthModals();
+      const modal = document.getElementById('apple-auth-modal');
+      if (modal) modal.classList.remove('hidden');
+      lucide.createIcons();
     }
 
+    function handleAppleSubmit(e) {
+      e.preventDefault();
+      const appleId = document.getElementById('apple-id-input').value.trim();
+      const name = appleId.split('@')[0] || 'Người dùng Apple';
+      const role = authSelectedRole || 'student';
+
+      showToast('info', 'Đang kết nối Apple ID...', `Xác thực Apple ID: ${appleId}...`);
+      
+      setTimeout(() => {
+        const now = new Date();
+        const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
+
+        currentUser = {
+          id: 'usr_apple_' + Date.now(),
+          email: appleId,
+          name: name,
+          role: role,
+          grade: '8A1',
+          school: 'THCS Chu Văn An',
+          authProvider: 'apple',
+          createdAt: now.toISOString(),
+          trialExpiresAt: trialExpires,
+          userApiKey: '',
+          quota: { count: 0, windowStart: Date.now() }
+        };
+
+        saveCurrentUser();
+        updateAuthHeaderUI();
+        closeAllAuthModals();
+
+        confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+        showToast('success', 'Đăng nhập Apple thành công! 🍏', `Chào mừng ${name}!`);
+        if (role === 'teacher') setTimeout(toggleTeacherGuideModal, 600);
+      }, 500);
+    }
+
+    // ==========================================
+    // 3. MICROSOFT LIVE WORKFLOW
+    // ==========================================
     function handleMicrosoftSignIn() {
-      const email = `ms.user${Math.floor(Math.random()*9000)+1000}@outlook.com`;
-      const name = authSelectedRole === 'teacher' ? 'Thầy Lê Hoàng Long' : 'Học Sinh Microsoft';
-      const role = authSelectedRole || 'student';
-      
-      const now = new Date();
-      const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
-
-      currentUser = {
-        id: 'usr_ms_' + Date.now(),
-        email: email,
-        name: name,
-        role: role,
-        grade: '8A1',
-        school: 'THCS Chu Văn An',
-        createdAt: now.toISOString(),
-        trialExpiresAt: trialExpires,
-        userApiKey: '',
-        quota: { count: 0, windowStart: Date.now() }
-      };
-
-      saveCurrentUser();
-      updateAuthHeaderUI();
-      toggleAuthModal();
-
-      confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
-      showToast('success', 'Đăng nhập Microsoft thành công! ⊞', `Chào mừng ${name}!`);
-      if (role === 'teacher') setTimeout(toggleTeacherGuideModal, 600);
+      closeAllAuthModals();
+      const modal = document.getElementById('microsoft-auth-modal');
+      if (modal) modal.classList.remove('hidden');
+      lucide.createIcons();
     }
+
+    function handleMicrosoftSubmit(e) {
+      e.preventDefault();
+      const account = document.getElementById('ms-account-input').value.trim();
+      const name = account.split('@')[0] || 'Người dùng Microsoft';
+      const role = authSelectedRole || 'student';
+
+      showToast('info', 'Đang kết nối Microsoft...', `Đang xác thực tài khoản Office 365...`);
+
+      setTimeout(() => {
+        const now = new Date();
+        const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
+
+        currentUser = {
+          id: 'usr_ms_' + Date.now(),
+          email: account,
+          name: name,
+          role: role,
+          grade: '8A1',
+          school: 'THCS Chu Văn An',
+          authProvider: 'microsoft',
+          createdAt: now.toISOString(),
+          trialExpiresAt: trialExpires,
+          userApiKey: '',
+          quota: { count: 0, windowStart: Date.now() }
+        };
+
+        saveCurrentUser();
+        updateAuthHeaderUI();
+        closeAllAuthModals();
+
+        confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+        showToast('success', 'Đăng nhập Microsoft thành công! ⊞', `Chào mừng ${name}!`);
+        if (role === 'teacher') setTimeout(toggleTeacherGuideModal, 600);
+      }, 500);
+    }
+
+    // ==========================================
+    // 4. PHONE OTP VERIFICATION WORKFLOW
+    // ==========================================
+    let otpCountdownInterval = null;
 
     function handlePhoneSignIn() {
-      const phone = prompt('Nhập số điện thoại của bạn (Ví dụ: 0988123456):', '0988123456');
-      if (!phone) return;
+      closeAllAuthModals();
+      const modal = document.getElementById('phone-auth-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.getElementById('phone-step-1').classList.remove('hidden');
+        document.getElementById('phone-step-2').classList.add('hidden');
+      }
+      lucide.createIcons();
+    }
 
-      const email = `${phone.trim()}@phone.tailieugdso.vn`;
-      const name = `Người dùng ${phone.slice(-4)}`;
+    function handleSendPhoneOtp(e) {
+      if (e) e.preventDefault();
+      const phoneInput = document.getElementById('phone-number-input');
+      const phone = phoneInput ? phoneInput.value.trim() : '0988123456';
+      if (!phone || phone.length < 9) {
+        showToast('error', 'Lỗi SĐT', 'Vui lòng nhập số điện thoại hợp lệ (10 số)!');
+        return;
+      }
+
+      document.getElementById('phone-step-1').classList.add('hidden');
+      document.getElementById('phone-step-2').classList.remove('hidden');
+      document.getElementById('phone-modal-title').innerText = 'Nhập Mã OTP Xác Thực';
+      document.getElementById('phone-modal-desc').innerText = `Mã OTP đã được gửi đến số +84 ${phone}`;
+
+      // Start 60s timer
+      let secondsLeft = 60;
+      const timerEl = document.getElementById('otp-timer');
+      if (otpCountdownInterval) clearInterval(otpCountdownInterval);
+      if (timerEl) timerEl.innerText = `${secondsLeft}s`;
+
+      otpCountdownInterval = setInterval(() => {
+        secondsLeft--;
+        if (timerEl) timerEl.innerText = `${secondsLeft}s`;
+        if (secondsLeft <= 0) {
+          clearInterval(otpCountdownInterval);
+          if (timerEl) timerEl.innerText = 'Hết hạn';
+        }
+      }, 1000);
+
+      showToast('info', 'Mã OTP Đã Gửi! 📱', `Mã OTP thử nghiệm là: 888888 (đã gửi đến +84 ${phone})`);
+    }
+
+    function handleVerifyPhoneOtp(e) {
+      e.preventDefault();
+      const otp = document.getElementById('phone-otp-input').value.trim();
+      const phone = document.getElementById('phone-number-input').value.trim() || '0988123456';
+
+      if (!otp || otp.length < 4) {
+        showToast('error', 'Mã OTP không đúng', 'Vui lòng nhập mã OTP 6 số đã được gửi!');
+        return;
+      }
+
+      if (otpCountdownInterval) clearInterval(otpCountdownInterval);
+
+      const email = `${phone}@phone.tailieugdso.vn`;
+      const name = `Học sinh (+84 ${phone.slice(-4)})`;
       const role = authSelectedRole || 'student';
-      
       const now = new Date();
       const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
 
@@ -2132,6 +2492,7 @@
         role: role,
         grade: '8A1',
         school: 'THCS Chu Văn An',
+        authProvider: 'phone',
         createdAt: now.toISOString(),
         trialExpiresAt: trialExpires,
         userApiKey: '',
@@ -2140,26 +2501,31 @@
 
       saveCurrentUser();
       updateAuthHeaderUI();
-      toggleAuthModal();
+      closeAllAuthModals();
 
       confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
-      showToast('success', 'Đăng nhập SĐT thành công! 📞', `Chào mừng ${name}!`);
+      showToast('success', 'Xác thực OTP thành công! 📞', `Chào mừng ${name}!`);
       if (role === 'teacher') setTimeout(toggleTeacherGuideModal, 600);
     }
 
+    // ==========================================
+    // 5. EMAIL DIRECT SUBMISSION
+    // ==========================================
     function handleAuthSubmit(e) {
       e.preventDefault();
       const email = document.getElementById('auth-email-input').value.trim();
       const now = new Date();
       const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
+      const name = email.split('@')[0];
 
       currentUser = {
         id: 'usr_' + Date.now(),
         email: email,
-        name: email.split('@')[0],
+        name: name,
         role: authSelectedRole,
         grade: '8A1',
         school: 'THCS Chu Văn An',
+        authProvider: 'email',
         createdAt: now.toISOString(),
         trialExpiresAt: trialExpires,
         userApiKey: '',
@@ -2168,7 +2534,7 @@
 
       saveCurrentUser();
       updateAuthHeaderUI();
-      toggleAuthModal();
+      closeAllAuthModals();
       confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
       showToast('success', 'Đăng nhập thành công! 🎉', `Chào mừng ${currentUser.name}!`);
 
