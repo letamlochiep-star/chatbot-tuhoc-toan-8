@@ -238,6 +238,60 @@
       transform: rotateY(180deg);
     }
 
+    /* Solution Spoiler Details Card */
+    .solution-spoiler-card {
+      margin: 1rem 0;
+      border-radius: 1.25rem;
+      border: 2px dashed #6366f1;
+      background: rgba(238, 242, 255, 0.45);
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+    .dark .solution-spoiler-card {
+      border-color: #4f46e5;
+      background: rgba(30, 27, 75, 0.45);
+    }
+    .solution-spoiler-card[open] {
+      border-style: solid;
+      background: rgba(238, 242, 255, 0.95);
+      box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.15);
+    }
+    .dark .solution-spoiler-card[open] {
+      background: rgba(24, 24, 47, 0.95);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    .solution-summary-btn {
+      padding: 0.85rem 1.15rem;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: #3730a3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      background: rgba(224, 231, 255, 0.75);
+      border-radius: 1.15rem;
+      transition: all 0.2s ease;
+    }
+    .dark .solution-summary-btn {
+      color: #c7d2fe;
+      background: rgba(49, 46, 129, 0.75);
+    }
+    .solution-summary-btn:hover {
+      background: rgba(199, 210, 254, 0.95);
+      transform: translateY(-1px);
+    }
+    .dark .solution-summary-btn:hover {
+      background: rgba(67, 56, 202, 0.9);
+    }
+    .solution-content-body {
+      padding: 1.15rem;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      border-top: 1px solid rgba(199, 210, 254, 0.5);
+    }
+
     /* Print Stylesheet */
     @media print {
       body * {
@@ -582,7 +636,7 @@
         </button>
 
         <button 
-          onclick="sendQuickPrompt('Hãy tạo Đề Kiểm Tra 15 Phút môn Toán 8 chuẩn ma trận GDPT 2018 gồm 4 câu trắc nghiệm tương tác [QUIZ_DATA] và 1 câu tự luận kèm thang điểm.')" 
+          onclick="sendQuickPrompt('Hãy biên soạn nội dung tự học và Đề Kiểm Tra 15 Phút môn Toán 8 chuẩn 3 phần: 1. Kiến thức cần nhớ, 2. Ví dụ minh họa có phương pháp, 3. Bài tập tương tự gồm 4 câu trắc nghiệm tương tác [QUIZ_DATA] và 1 câu tự luận. Khóa toàn bộ hướng dẫn giải chi tiết trong thẻ <details class=\'solution-spoiler-card\'><summary class=\'solution-summary-btn\'>🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class=\'solution-content-body\'>...</div></details> để học sinh tự làm trước.')" 
           class="px-3.5 py-1.5 bg-slate-100/80 dark:bg-dark-surface hover:bg-indigo-50 dark:hover:bg-slate-700 border border-slate-200/80 dark:border-dark-border text-slate-700 dark:text-slate-300 rounded-full text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 shadow-xs"
         >
           <span>🎯 Đề Kiểm Tra 15p</span>
@@ -4097,11 +4151,26 @@
       toggleExamBankModal();
       const chapter = document.getElementById('exam-chapter-select').value;
       if (type === '15p') {
-        sendQuickPrompt(`Hãy tạo một Đề Kiểm Tra 15 Phút môn Toán 8 về [${chapter}] gồm 4 câu trắc nghiệm tương tác (đính kèm [QUIZ_DATA]) và 1 câu tự luận kèm đáp án và thang điểm chi tiết.`);
+        sendQuickPrompt(`Hãy biên soạn nội dung tự học và Đề Kiểm Tra 15 Phút môn Toán 8 về [${chapter}] chuẩn 3 phần:
+1. 💡 Kiến thức cần nhớ (Tóm tắt định nghĩa, hằng đẳng thức/công thức cốt lõi và số trang SGK).
+2. 📝 Ví dụ minh họa (1 bài tập mẫu có phân tích phương pháp giải).
+3. ✍️ Bài tập tương tự tự luyện: gồm 4 câu trắc nghiệm tương tác (đính kèm [QUIZ_DATA]) và 1 câu tự luận.
+🔴 LƯU Ý SƯ PHẠM: KHÔNG nêu lời giải tự luận ngay từ đầu. Hãy đóng kín toàn bộ hướng dẫn giải chi tiết và thang điểm trong thẻ thu gọn:
+<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày các bước giải chi tiết & thang điểm]</div></details> để học sinh tự suy nghĩ làm bài trước.`);
       } else if (type === '45p') {
-        sendQuickPrompt(`Hãy tạo một Đề Kiểm Tra Giữa Kỳ (45 Phút) môn Toán 8 chuẩn ma trận GDPT 2018 về [${chapter}], gồm 8 câu trắc nghiệm khách quan (đính kèm [QUIZ_DATA]) và 2 câu tự luận kèm đáp án chi tiết.`);
+        sendQuickPrompt(`Hãy biên soạn nội dung tự học và Đề Kiểm Tra Giữa Kỳ (45 Phút) môn Toán 8 về [${chapter}] chuẩn 3 phần:
+1. 💡 Kiến thức cần nhớ.
+2. 📝 Ví dụ minh họa có phương pháp giải.
+3. ✍️ Đề tự luyện: 8 câu trắc nghiệm tương tác (đính kèm [QUIZ_DATA]) và 2 câu tự luận tổng hợp.
+🔴 LƯU Ý SƯ PHẠM: Đóng kín toàn bộ hướng dẫn giải tự luận và thang điểm trong thẻ thu gọn:
+<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày các bước giải chi tiết & thang điểm]</div></details> để học sinh tự làm trước.`);
       } else {
-        sendQuickPrompt(`Hãy tạo một Đề Thi Học Kỳ (90 Phút) môn Toán 8 chuẩn ma trận Bộ GD&ĐT gồm 12 câu trắc nghiệm 4 mức độ nhận thức (đính kèm [QUIZ_DATA]) và 3 câu tự luận tổng hợp kèm đáp án, bảng ma trận điểm chi tiết.`);
+        sendQuickPrompt(`Hãy biên soạn nội dung ôn tập và Đề Thi Học Kỳ (90 Phút) môn Toán 8 chuẩn ma trận GDPT 2018 về [${chapter}] chuẩn 3 phần:
+1. 💡 Kiến thức cần nhớ.
+2. 📝 Ví dụ minh họa có phương pháp giải.
+3. ✍️ Đề tự luyện: 12 câu trắc nghiệm tương tác 4 mức độ nhận thức (đính kèm [QUIZ_DATA]) và 3 câu tự luận.
+🔴 LƯU Ý SƯ PHẠM: Đóng kín toàn bộ hướng dẫn giải tự luận và ma trận thang điểm trong thẻ thu gọn:
+<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày các bước giải chi tiết & thang điểm]</div></details> để học sinh tự làm trước.`);
       }
     }
 
@@ -4109,7 +4178,12 @@
       const chapter = document.getElementById('exam-chapter-select').value;
       const level = document.getElementById('exam-level-select').value;
       toggleExamBankModal();
-      sendQuickPrompt(`Hãy tạo một bộ câu hỏi luyện tập môn Toán 8 thuộc [${chapter}] ở [${level}] gồm 3 câu trắc nghiệm tương tác có nút chọn A, B, C, D (đính kèm [QUIZ_DATA]) và giải thích chi tiết phương pháp làm từng bước.`);
+      sendQuickPrompt(`Hãy biên soạn nội dung tự học môn Toán 8 thuộc [${chapter}] ở [${level}] chuẩn 3 phần:
+1. 💡 Kiến thức cần nhớ.
+2. 📝 Ví dụ minh họa có phân tích cách tư duy.
+3. ✍️ Bài tập tương tự: gồm 3 câu trắc nghiệm tương tác (đính kèm [QUIZ_DATA]) và 1 bài tự luận rèn luyện.
+🔴 LƯU Ý SƯ PHẠM: Đóng kín toàn bộ hướng dẫn giải tự luận trong thẻ thu gọn:
+<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày các bước giải chi tiết & thang điểm]</div></details> để học sinh tự làm bài trước.`);
     }
 
     // ==========================================
@@ -4528,7 +4602,18 @@ mindmap
    Hệ thống sẽ tự động vẽ sơ đồ tư duy tương tác trực quan 100% trên màn hình.
 5. Khi giải thích bài toán Hình học hoặc Đồ thị hàm số, hãy xuất khối mã SVG hoàn chỉnh dạng \`\`\`svg ... \`\`\` để hệ thống tự động vẽ trực quan.
 6. Khi tạo câu hỏi trắc nghiệm, luôn bọc công thức trong $...$ và đính kèm cú pháp:
-[QUIZ_DATA: {"question": "Thu gọn và tìm bậc của đa thức: $A = 5x^2y - 3xy^2 + 2x^2y - 1$", "options": ["A. $A = 7x^2y - 3xy^2 - 1$, bậc 3", "B. $A = 7x^2y - 3xy^2 - 1$, bậc 2", "C. $A = 3x^2y - 3xy^2 - 1$, bậc 3", "D. $A = 7x^2y - 3xy^2$, bậc 4"], "correct": "A", "explain": "Nhóm hạng tử đồng dạng: $(5x^2y + 2x^2y) - 3xy^2 - 1 = 7x^2y - 3xy^2 - 1$. Bậc cao nhất là bậc của $7x^2y$ ($2 + 1 = 3$)."}]`;
+[QUIZ_DATA: {"question": "Thu gọn và tìm bậc của đa thức: $A = 5x^2y - 3xy^2 + 2x^2y - 1$", "options": ["A. $A = 7x^2y - 3xy^2 - 1$, bậc 3", "B. $A = 7x^2y - 3xy^2 - 1$, bậc 2", "C. $A = 3x^2y - 3xy^2 - 1$, bậc 3", "D. $A = 7x^2y - 3xy^2$, bậc 4"], "correct": "A", "explain": "Nhóm hạng tử đồng dạng: $(5x^2y + 2x^2y) - 3xy^2 - 1 = 7x^2y - 3xy^2 - 1$. Bậc cao nhất là bậc của $7x^2y$ ($2 + 1 = 3$)."}]
+7. QUY TẮC CẤU TRÚC BÀI TỰ HỌC & NGÂN HÀNG ĐỀ (KHÔNG LỘ LỜI GIẢI NGAY TỪ ĐẦU):
+   Khi học sinh yêu cầu tự học, ôn tập hoặc tạo đề kiểm tra, câu trả lời BẮT BUỘC gồm 3 phần:
+   - Phần 1: 💡 Kiến thức cần nhớ (Tóm tắt công thức, định lý, liên kết SGK).
+   - Phần 2: 📝 Ví dụ minh họa (1 bài toán mẫu có phân tích phương pháp).
+   - Phần 3: ✍️ Bài tập tương tự / Đề tự luyện:
+     + Các câu trắc nghiệm tương tác [QUIZ_DATA].
+     + Các bài tập tự luận để học sinh tự làm vào vở.
+   🔴 TUYỆT ĐỐI KHÔNG để lộ lời giải/đáp án bài tự luyện ngay từ đầu!
+   Mọi hướng dẫn giải chi tiết, cách tư duy và thang điểm BẮT BUỘC phải đóng kín trong thẻ thu gọn:
+   <details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày lời giải chi tiết từng bước và thang điểm tại đây]</div></details>
+   Học sinh phải tự suy nghĩ làm bài trước, sau khi hoàn thành mới bấm mở xem hướng dẫn giải.`;
     }
 
     function getCompressedHistory(messages) {
@@ -5078,8 +5163,8 @@ mindmap
       });
 
       return DOMPurify.sanitize(parsed, {
-        ADD_TAGS: ['svg', 'path', 'g', 'line', 'circle', 'rect', 'polygon', 'text', 'polyline', 'defs', 'marker', 'style', 'button', 'sup', 'sub', 'span', 'pre', 'math', 'semantics', 'mrow', 'mi', 'mo', 'mn', 'msup', 'msub', 'mfrac', 'mover', 'munder', 'msqrt', 'mroot', 'annotation'],
-        ADD_ATTR: ['viewBox', 'd', 'fill', 'stroke', 'stroke-width', 'x', 'y', 'x1', 'y1', 'x2', 'y2', 'cx', 'cy', 'r', 'points', 'text-anchor', 'font-size', 'font-weight', 'font-family', 'transform', 'marker-end', 'id', 'class', 'data-letter', 'data-correct', 'type', 'style', 'aria-hidden', 'encoding']
+        ADD_TAGS: ['svg', 'path', 'g', 'line', 'circle', 'rect', 'polygon', 'text', 'polyline', 'defs', 'marker', 'style', 'button', 'sup', 'sub', 'span', 'pre', 'details', 'summary', 'div', 'math', 'semantics', 'mrow', 'mi', 'mo', 'mn', 'msup', 'msub', 'mfrac', 'mover', 'munder', 'msqrt', 'mroot', 'annotation'],
+        ADD_ATTR: ['viewBox', 'd', 'fill', 'stroke', 'stroke-width', 'x', 'y', 'x1', 'y1', 'x2', 'y2', 'cx', 'cy', 'r', 'points', 'text-anchor', 'font-size', 'font-weight', 'font-family', 'transform', 'marker-end', 'id', 'class', 'data-letter', 'data-correct', 'type', 'style', 'aria-hidden', 'encoding', 'open']
       });
     }
 
