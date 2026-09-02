@@ -356,16 +356,6 @@
         </button>
       </div>
 
-      <!-- Nút Hồ Sơ Học Sinh -->
-      <button 
-        onclick="toggleProfileModal()" 
-        class="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-2xl bg-white dark:bg-dark-surface hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold border border-slate-200 dark:border-dark-border transition active:scale-95 shadow-lux-sm"
-        title="Hồ sơ học sinh & Trường lớp"
-      >
-        <i data-lucide="user" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
-        <span id="header-student-name-short" class="hidden sm:inline">Học Sinh</span>
-      </button>
-
       <!-- Nút Bảng Quản Trị Giáo Viên -->
       <button 
         onclick="toggleAdminDashboardModal()" 
@@ -1880,23 +1870,32 @@
       try {
         const saved = localStorage.getItem('ai_math_current_user_v2');
         if (saved) {
-          currentUser = JSON.parse(saved);
+          const parsed = JSON.parse(saved);
+          // Tự động làm sạch user demo cũ để hiển thị giao diện đăng nhập mới
+          if (parsed && (parsed.id === 'usr_student_demo' || parsed.email === 'hocsinh@tailieugdso.vn')) {
+            currentUser = null;
+            localStorage.removeItem('ai_math_current_user_v2');
+          } else {
+            currentUser = parsed;
+          }
         } else {
-          // Default default student onboarding
-          currentUser = {
-            id: 'usr_student_demo',
-            email: 'hocsinh@tailieugdso.vn',
-            name: 'Nguyễn Hoàng Nam',
-            grade: '8A1',
-            school: 'THCS Chu Văn An',
-            role: 'student',
-            createdAt: new Date().toISOString(),
-            quota: { count: 0, windowStart: Date.now() }
-          };
-          saveCurrentUser();
+          currentUser = null;
         }
         updateAuthHeaderUI();
-      } catch (e) {}
+
+        // Tự động hiển thị Modal Đăng nhập / Đăng ký chuẩn ChatGPT khi là khách vãng lai
+        if (!currentUser) {
+          setTimeout(() => {
+            const modal = document.getElementById('auth-modal');
+            if (modal && modal.classList.contains('hidden')) {
+              toggleAuthModal();
+            }
+          }, 350);
+        }
+      } catch (e) {
+        currentUser = null;
+        updateAuthHeaderUI();
+      }
     }
 
     function saveCurrentUser() {
