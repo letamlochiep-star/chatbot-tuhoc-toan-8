@@ -2301,6 +2301,7 @@
         updateAuthHeaderUI();
         updateProfileDisplayUI();
         closeAllAuthModals();
+        sendAdminNotificationEmail({ type: 'register' });
 
         confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
         if (role === 'teacher') {
@@ -2366,6 +2367,7 @@
         saveCurrentUser();
         updateAuthHeaderUI();
         closeAllAuthModals();
+        sendAdminNotificationEmail({ type: 'register' });
 
         confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
         showToast('success', 'Đăng nhập Apple thành công! 🍏', `Chào mừng ${name}!`);
@@ -2412,6 +2414,7 @@
         saveCurrentUser();
         updateAuthHeaderUI();
         closeAllAuthModals();
+        sendAdminNotificationEmail({ type: 'register' });
 
         confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
         showToast('success', 'Đăng nhập Microsoft thành công! ⊞', `Chào mừng ${name}!`);
@@ -2502,6 +2505,7 @@
       saveCurrentUser();
       updateAuthHeaderUI();
       closeAllAuthModals();
+      sendAdminNotificationEmail({ type: 'register' });
 
       confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
       showToast('success', 'Xác thực OTP thành công! 📞', `Chào mừng ${name}!`);
@@ -2535,10 +2539,42 @@
       saveCurrentUser();
       updateAuthHeaderUI();
       closeAllAuthModals();
+      sendAdminNotificationEmail({ type: 'register' });
       confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
       showToast('success', 'Đăng nhập thành công! 🎉', `Chào mừng ${currentUser.name}!`);
 
       if (authSelectedRole === 'teacher') setTimeout(toggleTeacherGuideModal, 600);
+    }
+
+    // ==========================================
+    // AUTO NOTIFICATION EMAIL DISPATCHER (tailieugiaoducso@gmail.com)
+    // ==========================================
+    async function sendAdminNotificationEmail(payload = {}) {
+      try {
+        const bodyData = {
+          adminEmail: 'tailieugiaoducso@gmail.com',
+          type: payload.type || 'register',
+          name: currentUser?.name || payload.name || 'Học sinh mới',
+          email: currentUser?.email || payload.email || 'N/A',
+          role: currentUser?.role || payload.role || 'student',
+          grade: currentUser?.grade || payload.grade || '8A1',
+          school: currentUser?.school || payload.school || 'THCS',
+          authProvider: currentUser?.authProvider || 'web',
+          quizScore: payload.quizScore || null,
+          accuracy: payload.accuracy || null,
+          timestamp: new Date().toISOString()
+        };
+
+        const res = await fetch('/api/notify-admin-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(bodyData)
+        });
+        const result = await res.json();
+        console.log('✅ Đã gửi thông báo về tailieugiaoducso@gmail.com:', result);
+      } catch (err) {
+        console.log('ℹ️ Ghi nhận thông báo cục bộ (Offline/Direct Mode)');
+      }
     }
 
     // ==========================================

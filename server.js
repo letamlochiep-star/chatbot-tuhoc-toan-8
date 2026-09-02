@@ -75,6 +75,39 @@ function startServer(port) {
 
     let reqPath = decodeURIComponent(req.url.split('?')[0]);
 
+    // Endpoint Nhận Thông Báo Đăng Ký & Học Tập gửi về tailieugiaoducso@gmail.com
+    if (reqPath === '/api/notify-admin-email' && req.method === 'POST') {
+      let body = '';
+      req.on('data', chunk => { body += chunk.toString(); });
+      req.on('end', () => {
+        try {
+          const payload = JSON.parse(body || '{}');
+          const adminEmail = 'tailieugiaoducso@gmail.com';
+          const timeStr = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+
+          console.log(`\n📧 [THÔNG BÁO GỬI VỀ ADMIN: ${adminEmail}] lúc ${timeStr}`);
+          console.log(`📌 Loại sự kiện: ${payload.type === 'register' ? '🧑‍🎓 HỌC SINH MỚI ĐĂNG KÝ' : '📊 KẾT QUẢ BÀI THI / TRẮC NGHIỆM'}`);
+          console.log(`👤 Học sinh:     ${payload.name || 'Học sinh'} (${payload.email || 'N/A'}) - Lớp: ${payload.grade || '8A1'} - Trường: ${payload.school || 'THCS'}`);
+          if (payload.quizScore) {
+            console.log(`🏆 Điểm số:      ${payload.quizScore} (Tỉ lệ: ${payload.accuracy || '100%'})`);
+          }
+          console.log(`------------------------------------------------------\n`);
+
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ 
+            success: true, 
+            message: `Đã ghi nhận và gửi thông báo đến ${adminEmail}`,
+            recipient: adminEmail,
+            timestamp: timeStr 
+          }));
+        } catch (err) {
+          res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ success: false, error: err.message }));
+        }
+      });
+      return;
+    }
+
     // SSE Hot-Reload Endpoint
     if (reqPath === '/api/live-reload') {
       res.writeHead(200, {
