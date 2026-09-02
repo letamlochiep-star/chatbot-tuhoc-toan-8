@@ -314,17 +314,47 @@
         <kbd class="hidden xl:inline px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded text-[9px] font-mono border border-slate-200 dark:border-slate-700">Ctrl K</kbd>
       </button>
 
-      <!-- Nút Đăng Nhập / Trạng Thái Tài Khoản (ChatGPT Luxury Auth) -->
+      <!-- Nút Đoạn Chat Mới / Reset Chatbot -->
       <button 
-        id="header-auth-btn"
-        onclick="handleHeaderAuthClick()" 
-        class="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white text-xs font-black shadow-md shadow-blue-500/20 transition active:scale-95"
-        title="Đăng ký, Đăng nhập & Quản lý Hạn Mức Chatbot"
+        onclick="resetChatbotUI()" 
+        class="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-white dark:bg-dark-surface hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold border border-slate-200 dark:border-dark-border transition active:scale-95 shadow-lux-sm"
+        title="Bắt đầu đoạn chat mới & Làm mới giao diện"
       >
-        <i data-lucide="log-in" id="header-auth-icon" class="w-4 h-4"></i>
-        <span id="header-auth-lbl">Đăng Nhập</span>
-        <span id="header-quota-badge" class="hidden ml-1 px-1.5 py-0.5 bg-white/25 rounded-full text-[10px] font-mono">30/30</span>
+        <i data-lucide="plus" class="w-4 h-4 text-blue-600 dark:text-cyan-400"></i>
+        <span class="hidden sm:inline">Chat Mới</span>
       </button>
+
+      <!-- Nhóm Nút Đăng Nhập / Đăng Ký Chuẩn ChatGPT -->
+      <div id="header-auth-group" class="flex items-center gap-1.5">
+        <!-- Nút Đăng Nhập (Pill Dark) -->
+        <button 
+          id="header-btn-login"
+          onclick="openAuthModal('login')" 
+          class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white text-white dark:text-slate-900 text-xs font-bold transition active:scale-95 shadow-xs"
+        >
+          Đăng nhập
+        </button>
+
+        <!-- Nút Đăng Ký Miễn Phí (Pill Light) -->
+        <button 
+          id="header-btn-register"
+          onclick="openAuthModal('register')" 
+          class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 text-xs font-bold transition active:scale-95"
+        >
+          Đăng ký miễn phí
+        </button>
+
+        <!-- Khi Đã Đăng Nhập: User Pill Badge -->
+        <button 
+          id="header-user-badge"
+          onclick="handleHeaderAuthClick()" 
+          class="hidden flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-bold transition"
+        >
+          <span id="header-user-avatar">🧑‍🎓</span>
+          <span id="header-user-name">Học Sinh</span>
+          <span id="header-quota-badge" class="ml-1 px-1.5 py-0.5 bg-blue-600 text-white rounded-full text-[10px] font-mono">30/30</span>
+        </button>
+      </div>
 
       <!-- Nút Hồ Sơ Học Sinh -->
       <button 
@@ -683,131 +713,132 @@
   </main>
 
   <!-- ========================================== -->
-  <!-- MODAL: ĐĂNG NHẬP / ĐĂNG KÝ CHATGPT LUXURY AUTH -->
+  <!-- MODAL: ĐĂNG NHẬP / ĐĂNG KÝ CHUẨN MẪU CHATGPT -->
   <!-- ========================================== -->
-  <div id="auth-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-dark-card border border-slate-300 dark:border-dark-border w-full max-w-md rounded-3xl p-6 sm:p-7 shadow-2xl space-y-4 animate-in fade-in zoom-in duration-200 max-h-[95vh] overflow-y-auto custom-scrollbar">
+  <div id="auth-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs hidden flex items-center justify-center p-4 animate-in fade-in duration-200">
+    <div class="bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border w-full max-w-[420px] rounded-[2rem] p-6 sm:p-8 shadow-2xl space-y-4 relative max-h-[95vh] overflow-y-auto custom-scrollbar">
       
-      <!-- Brand & Header -->
-      <div class="text-center space-y-1.5 pb-1">
-        <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-500 text-white font-black text-xl shadow-md shadow-blue-500/25 mb-1">
-          GD
-        </div>
-        <h3 class="font-extrabold text-lg sm:text-xl text-slate-900 dark:text-white" id="auth-modal-title">Chào Mừng Đến Với AI Math 8</h3>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Cổng học tập & trợ giảng Toán 8 • <a href="https://tailieugdso.vn/" target="_blank" class="text-blue-600 dark:text-cyan-400 font-bold hover:underline">tailieugdso.vn</a></p>
-      </div>
-
-      <!-- Google OAuth One-Click Button -->
+      <!-- Nút Đóng '✕' góc trên cùng bên phải -->
       <button 
         type="button" 
-        onclick="handleGoogleSignIn()" 
-        class="w-full py-2.5 px-4 rounded-2xl border-2 border-slate-200 dark:border-dark-border hover:border-blue-500 bg-white dark:bg-dark-surface hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-white font-bold text-xs flex items-center justify-center gap-3 transition shadow-xs active:scale-98"
+        onclick="toggleAuthModal()" 
+        class="absolute top-5 right-5 p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+        title="Đóng"
       >
-        <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
-          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-        </svg>
-        <span>Tiếp tục với tài khoản Google</span>
+        <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <!-- Divider -->
-      <div class="flex items-center gap-3 my-2">
-        <div class="flex-1 h-px bg-slate-200 dark:bg-dark-border"></div>
-        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">hoặc bằng Email</span>
-        <div class="flex-1 h-px bg-slate-200 dark:bg-dark-border"></div>
+      <!-- Tiêu đề & Mô tả chuẩn ảnh minh họa -->
+      <div class="text-center pt-2 space-y-2">
+        <h2 class="text-2xl sm:text-[26px] font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
+          Đăng nhập hoặc đăng ký
+        </h2>
+        <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-400 leading-relaxed max-w-[320px] mx-auto">
+          Bạn sẽ nhận được phản hồi thông minh hơn và có thể tải lên tệp, hình ảnh, v.v.
+        </p>
       </div>
 
-      <!-- Tabs Switcher -->
-      <div class="grid grid-cols-2 p-1 bg-slate-100 dark:bg-dark-surface rounded-2xl border border-slate-200 dark:border-dark-border text-xs font-bold">
-        <button type="button" id="tab-auth-login" onclick="switchAuthTab('login')" class="py-2 rounded-xl bg-white dark:bg-dark-card text-slate-900 dark:text-white shadow-xs transition">
-          Đăng Nhập
+      <!-- 4 NÚT ĐĂNG NHẬP MẠNG XÃ HỘI CHUẨN FORM CHATGPT (PILL BUTTONS) -->
+      <div class="space-y-2.5 pt-1">
+        <!-- 1. Tiếp tục với Google -->
+        <button 
+          type="button" 
+          onclick="handleGoogleSignIn()" 
+          class="w-full py-3 px-5 rounded-full border border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 bg-white dark:bg-dark-surface hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-[13px] flex items-center justify-center gap-3 transition shadow-none active:scale-98"
+        >
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span>Tiếp tục với Google</span>
         </button>
-        <button type="button" id="tab-auth-register" onclick="switchAuthTab('register')" class="py-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white transition">
-          Đăng Ký Mới
+
+        <!-- 2. Tiếp tục với Apple -->
+        <button 
+          type="button" 
+          onclick="handleAppleSignIn()" 
+          class="w-full py-3 px-5 rounded-full border border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 bg-white dark:bg-dark-surface hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-[13px] flex items-center justify-center gap-3 transition shadow-none active:scale-98"
+        >
+          <svg class="w-4 h-4 shrink-0 fill-current text-slate-900 dark:text-white" viewBox="0 0 170 170">
+            <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.08-7.71-7.85-12.04-14.3-6.53-9.67-11.66-20.6-15.39-32.78-3.73-12.18-5.6-23.75-5.6-34.72 0-14.47 3.65-26.65 10.96-36.54 7.31-9.89 16.54-14.94 27.69-15.17 4.89 0 10.36 1.3 16.4 3.91 6.04 2.61 10.22 3.96 12.54 4.07 2.09 0 6.64-1.46 13.65-4.37 7.01-2.92 12.98-4.14 17.91-3.68 13.44.87 23.95 6.04 31.52 15.53-11.83 7.18-17.63 17.07-17.41 29.68.22 9.89 4.02 18.26 11.4 25.11 7.39 6.85 16.19 10.65 26.4 11.41-2.28 7.07-5.06 14.19-8.34 21.36zM119.22 33.05c0-7.39 2.66-14.41 7.99-21.05 5.33-6.63 11.96-10.93 19.89-12.9 1.09 7.61-.92 14.89-6.03 21.84-5.11 6.96-11.95 11.39-20.52 13.3-.33-.39-.77-.79-1.33-1.19z"/>
+          </svg>
+          <span>Tiếp tục với Apple</span>
+        </button>
+
+        <!-- 3. Tiếp tục với Microsoft -->
+        <button 
+          type="button" 
+          onclick="handleMicrosoftSignIn()" 
+          class="w-full py-3 px-5 rounded-full border border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 bg-white dark:bg-dark-surface hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-[13px] flex items-center justify-center gap-3 transition shadow-none active:scale-98"
+        >
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 21 21">
+            <rect x="1" y="1" width="9" height="9" fill="#f25022"/>
+            <rect x="11" y="1" width="9" height="9" fill="#7fba00"/>
+            <rect x="1" y="11" width="9" height="9" fill="#00a4ef"/>
+            <rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+          </svg>
+          <span>Tiếp tục với Microsoft</span>
+        </button>
+
+        <!-- 4. Tiếp tục với điện thoại -->
+        <button 
+          type="button" 
+          onclick="handlePhoneSignIn()" 
+          class="w-full py-3 px-5 rounded-full border border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 bg-white dark:bg-dark-surface hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-[13px] flex items-center justify-center gap-3 transition shadow-none active:scale-98"
+        >
+          <i data-lucide="phone" class="w-4 h-4 text-slate-700 dark:text-slate-300"></i>
+          <span>Tiếp tục với điện thoại</span>
         </button>
       </div>
 
-      <!-- Form Inputs -->
+      <!-- Divider 'HOẶC' chuẩn mẫu -->
+      <div class="relative flex py-1 items-center">
+        <div class="flex-grow border-t border-slate-200 dark:border-dark-border"></div>
+        <span class="flex-shrink mx-4 text-[10px] font-extrabold tracking-widest text-slate-400 dark:text-slate-500 uppercase">HOẶC</span>
+        <div class="flex-grow border-t border-slate-200 dark:border-dark-border"></div>
+      </div>
+
+      <!-- Vai Trò (Học Sinh / Giáo Viên) & Email Input -->
       <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-3 text-xs">
         
-        <!-- Field for Register Mode Only: Role Selector -->
-        <div id="auth-role-group" class="space-y-1.5 hidden">
-          <label class="font-extrabold text-slate-800 dark:text-slate-200 block text-[11px]">
-            Chọn vai trò của bạn: <span class="text-rose-500">*</span>
+        <!-- Role Selection -->
+        <div class="grid grid-cols-2 gap-2">
+          <label class="flex items-center justify-center gap-1.5 p-2 rounded-2xl border-2 border-blue-500 bg-blue-50/60 dark:bg-blue-950/40 cursor-pointer font-bold text-slate-900 dark:text-white" id="role-label-student">
+            <input type="radio" name="auth_role" value="student" checked onchange="handleRoleSelectionChange('student')" class="sr-only" />
+            <span>🧑‍🎓 Học Sinh</span>
           </label>
-          <div class="grid grid-cols-2 gap-2">
-            <label class="relative flex flex-col p-3 rounded-2xl border-2 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 cursor-pointer transition hover:shadow-xs" id="role-label-student">
-              <input type="radio" name="auth_role" value="student" checked onchange="handleRoleSelectionChange('student')" class="sr-only" />
-              <div class="flex items-center gap-1.5 font-black text-blue-900 dark:text-blue-300 text-xs">
-                <span>🧑‍🎓</span> <span>Học Sinh</span>
-              </div>
-              <p class="text-[10px] text-slate-600 dark:text-slate-400 mt-1 leading-snug">
-                ✓ Dùng <strong>API Key Admin</strong><br>
-                ✓ Hạn mức: <strong>30 câu / 60p</strong>
-              </p>
-            </label>
-
-            <label class="relative flex flex-col p-3 rounded-2xl border border-slate-200 dark:border-dark-border bg-white dark:bg-dark-surface cursor-pointer transition hover:shadow-xs" id="role-label-teacher">
-              <input type="radio" name="auth_role" value="teacher" onchange="handleRoleSelectionChange('teacher')" class="sr-only" />
-              <div class="flex items-center gap-1.5 font-black text-purple-900 dark:text-purple-300 text-xs">
-                <span>👨‍🏫</span> <span>Giáo Viên</span>
-              </div>
-              <p class="text-[10px] text-slate-600 dark:text-slate-400 mt-1 leading-snug">
-                ✓ <strong>Dùng thử 5 ngày</strong><br>
-                ✓ Tự nhập Gemini Key
-              </p>
-            </label>
-          </div>
+          <label class="flex items-center justify-center gap-1.5 p-2 rounded-2xl border border-slate-200 dark:border-dark-border bg-white dark:bg-dark-surface cursor-pointer font-bold text-slate-700 dark:text-slate-300" id="role-label-teacher">
+            <input type="radio" name="auth_role" value="teacher" onchange="handleRoleSelectionChange('teacher')" class="sr-only" />
+            <span>👨‍🏫 Giáo Viên</span>
+          </label>
         </div>
 
-        <!-- Field for Register Mode: Full Name -->
-        <div id="auth-name-group" class="hidden">
-          <label class="font-bold text-slate-700 dark:text-slate-300 block text-[11px] mb-1">Họ và Tên:</label>
-          <input type="text" id="auth-fullname-input" placeholder="Ví dụ: Thầy Trần Văn Minh / Nguyễn Hoàng Nam" class="w-full bg-slate-50 dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-xl p-2.5 font-bold text-slate-900 dark:text-white outline-none focus:border-blue-600" />
-        </div>
-
-        <!-- Field for Register Mode: School & Grade -->
-        <div id="auth-school-group" class="grid grid-cols-2 gap-2 hidden">
-          <div>
-            <label class="font-bold text-slate-700 dark:text-slate-300 block text-[11px] mb-1">Lớp / Bộ môn:</label>
-            <input type="text" id="auth-grade-input" placeholder="Lớp 8A1 / Tổ Toán" class="w-full bg-slate-50 dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-xl p-2.5 font-bold text-slate-900 dark:text-white outline-none focus:border-blue-600" />
-          </div>
-          <div>
-            <label class="font-bold text-slate-700 dark:text-slate-300 block text-[11px] mb-1">Trường:</label>
-            <input type="text" id="auth-school-input" placeholder="THCS Chu Văn An" class="w-full bg-slate-50 dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-xl p-2.5 font-bold text-slate-900 dark:text-white outline-none focus:border-blue-600" />
-          </div>
-        </div>
-
-        <!-- Email -->
+        <!-- Input Email dạng Pill Rounded -->
         <div>
-          <label class="font-bold text-slate-700 dark:text-slate-300 block text-[11px] mb-1">Địa chỉ Email:</label>
-          <input type="email" id="auth-email-input" required placeholder="name@tailieugdso.vn" class="w-full bg-slate-50 dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-xl p-2.5 font-bold text-slate-900 dark:text-white outline-none focus:border-blue-600" />
+          <input 
+            type="email" 
+            id="auth-email-input" 
+            required 
+            placeholder="Địa chỉ email..." 
+            class="w-full py-3 px-5 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-dark-surface focus:border-slate-900 dark:focus:border-white font-medium text-xs sm:text-[13px] text-slate-900 dark:text-white outline-none transition" 
+          />
         </div>
 
-        <!-- Password -->
-        <div>
-          <label class="font-bold text-slate-700 dark:text-slate-300 block text-[11px] mb-1">Mật khẩu:</label>
-          <input type="password" id="auth-password-input" required placeholder="••••••••" class="w-full bg-slate-50 dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-xl p-2.5 font-bold text-slate-900 dark:text-white outline-none focus:border-blue-600" />
-        </div>
-
-        <!-- Submit Button -->
+        <!-- Nút Tiếp Tục (Pill Black Button) -->
         <button 
           type="submit" 
           id="auth-submit-btn" 
-          class="w-full py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black text-xs shadow-md shadow-blue-500/25 transition active:scale-98 mt-2 flex items-center justify-center gap-2"
+          class="w-full py-3 rounded-full bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white text-white dark:text-slate-900 font-bold text-xs sm:text-[13px] shadow-sm transition active:scale-98"
         >
-          <i data-lucide="log-in" class="w-4 h-4"></i>
-          <span id="auth-btn-label">Đăng Nhập Vào Chatbot</span>
+          Tiếp tục
         </button>
       </form>
 
-      <div class="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-dark-border text-[11px] text-slate-500">
-        <span>Bảo mật 100% qua chuẩn mã hóa HTTPS</span>
-        <button type="button" onclick="toggleAuthModal()" class="text-slate-400 hover:text-slate-700 dark:hover:text-white font-bold">
-          Đóng
-        </button>
+      <!-- Footer Policy -->
+      <div class="text-center text-[11px] text-slate-500 dark:text-slate-400 pt-1">
+        Bằng cách tiếp tục, bạn đồng ý với Điều khoản & Chính sách quyền riêng tư trên <a href="https://tailieugdso.vn/" target="_blank" class="text-slate-800 dark:text-slate-200 font-bold hover:underline">tailieugdso.vn</a>
       </div>
     </div>
   </div>
@@ -1879,12 +1910,21 @@
     }
 
     function updateAuthHeaderUI() {
-      const btn = document.getElementById('header-auth-btn');
-      const lbl = document.getElementById('header-auth-lbl');
-      const badge = document.getElementById('header-quota-badge');
-      if (!btn || !lbl) return;
+      const btnLogin = document.getElementById('header-btn-login');
+      const btnReg = document.getElementById('header-btn-register');
+      const userBadge = document.getElementById('header-user-badge');
+      const userAvatar = document.getElementById('header-user-avatar');
+      const userName = document.getElementById('header-user-name');
+      const quotaBadge = document.getElementById('header-quota-badge');
 
       if (currentUser) {
+        if (btnLogin) btnLogin.classList.add('hidden');
+        if (btnReg) btnReg.classList.add('hidden');
+        if (userBadge) {
+          userBadge.classList.remove('hidden');
+          userBadge.classList.add('flex');
+        }
+
         if (currentUser.role === 'student') {
           const now = Date.now();
           if (!currentUser.quota || (now - currentUser.quota.windowStart > 3600000)) {
@@ -1892,33 +1932,39 @@
             saveCurrentUser();
           }
           const remaining = Math.max(0, 30 - (currentUser.quota.count || 0));
-          lbl.innerText = currentUser.name.split(' ').slice(-2).join(' ') || 'Học Sinh';
-          if (badge) {
-            badge.classList.remove('hidden');
-            badge.innerText = `${remaining}/30`;
-            badge.className = remaining <= 5 ? 'ml-1 px-1.5 py-0.5 bg-rose-500 text-white rounded-full text-[10px] font-mono' : 'ml-1 px-1.5 py-0.5 bg-white/25 rounded-full text-[10px] font-mono';
+          if (userAvatar) userAvatar.innerText = '🧑‍🎓';
+          if (userName) userName.innerText = currentUser.name.split(' ').slice(-2).join(' ') || 'Học Sinh';
+          if (quotaBadge) {
+            quotaBadge.innerText = `${remaining}/30`;
+            quotaBadge.className = remaining <= 5 ? 'ml-1 px-1.5 py-0.5 bg-rose-500 text-white rounded-full text-[10px] font-mono' : 'ml-1 px-1.5 py-0.5 bg-blue-600 text-white rounded-full text-[10px] font-mono';
           }
-          btn.className = 'flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 text-white text-xs font-black shadow-md shadow-blue-500/20 transition active:scale-95';
         } else {
           // Teacher
           const now = Date.now();
           const trialExpires = new Date(currentUser.trialExpiresAt).getTime();
           const msLeft = trialExpires - now;
           const daysLeft = Math.max(0, Math.ceil(msLeft / (1000 * 60 * 60 * 24)));
-          lbl.innerText = currentUser.name.split(' ').slice(-2).join(' ') || 'Thầy/Cô';
-          if (badge) {
-            badge.classList.remove('hidden');
-            badge.innerText = daysLeft > 0 ? `Còn ${daysLeft}d` : 'Hết Hạn';
-            badge.className = daysLeft > 0 ? 'ml-1 px-1.5 py-0.5 bg-purple-500 text-white rounded-full text-[10px] font-mono' : 'ml-1 px-1.5 py-0.5 bg-rose-600 text-white rounded-full text-[10px] font-mono';
+          if (userAvatar) userAvatar.innerText = '👨‍🏫';
+          if (userName) userName.innerText = currentUser.name.split(' ').slice(-2).join(' ') || 'Thầy/Cô';
+          if (quotaBadge) {
+            quotaBadge.innerText = daysLeft > 0 ? `Còn ${daysLeft}d` : 'Hết Hạn';
+            quotaBadge.className = daysLeft > 0 ? 'ml-1 px-1.5 py-0.5 bg-purple-600 text-white rounded-full text-[10px] font-mono' : 'ml-1 px-1.5 py-0.5 bg-rose-600 text-white rounded-full text-[10px] font-mono';
           }
-          btn.className = 'flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 text-white text-xs font-black shadow-md shadow-purple-500/20 transition active:scale-95';
         }
       } else {
-        lbl.innerText = 'Đăng Nhập';
-        if (badge) badge.classList.add('hidden');
-        btn.className = 'flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-slate-900 dark:bg-dark-surface hover:bg-slate-800 text-white text-xs font-black shadow-md transition active:scale-95';
+        if (btnLogin) btnLogin.classList.remove('hidden');
+        if (btnReg) btnReg.classList.remove('hidden');
+        if (userBadge) {
+          userBadge.classList.add('hidden');
+          userBadge.classList.remove('flex');
+        }
       }
       lucide.createIcons();
+    }
+
+    function openAuthModal(mode = 'login') {
+      authMode = mode;
+      toggleAuthModal();
     }
 
     function handleHeaderAuthClick() {
@@ -1938,46 +1984,16 @@
       lucide.createIcons();
     }
 
-    function switchAuthTab(mode) {
-      authMode = mode;
-      const tabLogin = document.getElementById('tab-auth-login');
-      const tabReg = document.getElementById('tab-auth-register');
-      const roleGroup = document.getElementById('auth-role-group');
-      const nameGroup = document.getElementById('auth-name-group');
-      const schoolGroup = document.getElementById('auth-school-group');
-      const title = document.getElementById('auth-modal-title');
-      const submitLabel = document.getElementById('auth-btn-label');
-
-      if (mode === 'register') {
-        tabReg.className = 'py-2 rounded-xl bg-white dark:bg-dark-card text-slate-900 dark:text-white shadow-xs transition';
-        tabLogin.className = 'py-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white transition';
-        roleGroup.classList.remove('hidden');
-        nameGroup.classList.remove('hidden');
-        schoolGroup.classList.remove('hidden');
-        title.innerText = 'Đăng Ký Tài Khoản Mới';
-        submitLabel.innerText = 'Tạo Tài Khoản & Bắt Đầu';
-      } else {
-        tabLogin.className = 'py-2 rounded-xl bg-white dark:bg-dark-card text-slate-900 dark:text-white shadow-xs transition';
-        tabReg.className = 'py-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white transition';
-        roleGroup.classList.add('hidden');
-        nameGroup.classList.add('hidden');
-        schoolGroup.classList.add('hidden');
-        title.innerText = 'Đăng Nhập Vào AI Math 8';
-        submitLabel.innerText = 'Đăng Nhập Vào Chatbot';
-      }
-      lucide.createIcons();
-    }
-
     function handleRoleSelectionChange(role) {
       authSelectedRole = role;
       const lblStudent = document.getElementById('role-label-student');
       const lblTeacher = document.getElementById('role-label-teacher');
       if (role === 'student') {
-        lblStudent.className = 'relative flex flex-col p-3 rounded-2xl border-2 border-blue-500 bg-blue-50/60 dark:bg-blue-950/40 cursor-pointer transition shadow-xs';
-        lblTeacher.className = 'relative flex flex-col p-3 rounded-2xl border border-slate-200 dark:border-dark-border bg-white dark:bg-dark-surface cursor-pointer transition';
+        lblStudent.className = 'flex items-center justify-center gap-1.5 p-2 rounded-2xl border-2 border-blue-500 bg-blue-50/60 dark:bg-blue-950/40 cursor-pointer font-bold text-slate-900 dark:text-white';
+        lblTeacher.className = 'flex items-center justify-center gap-1.5 p-2 rounded-2xl border border-slate-200 dark:border-dark-border bg-white dark:bg-dark-surface cursor-pointer font-bold text-slate-700 dark:text-slate-300';
       } else {
-        lblTeacher.className = 'relative flex flex-col p-3 rounded-2xl border-2 border-purple-500 bg-purple-50/60 dark:bg-purple-950/40 cursor-pointer transition shadow-xs';
-        lblStudent.className = 'relative flex flex-col p-3 rounded-2xl border border-slate-200 dark:border-dark-border bg-white dark:bg-dark-surface cursor-pointer transition';
+        lblTeacher.className = 'flex items-center justify-center gap-1.5 p-2 rounded-2xl border-2 border-purple-500 bg-purple-50/60 dark:bg-purple-950/40 cursor-pointer font-bold text-slate-900 dark:text-white';
+        lblStudent.className = 'flex items-center justify-center gap-1.5 p-2 rounded-2xl border border-slate-200 dark:border-dark-border bg-white dark:bg-dark-surface cursor-pointer font-bold text-slate-700 dark:text-slate-300';
       }
     }
 
@@ -2021,69 +2037,184 @@
       }
     }
 
+    function handleAppleSignIn() {
+      const email = `apple.user${Math.floor(Math.random()*9000)+1000}@icloud.com`;
+      const name = authSelectedRole === 'teacher' ? 'Cô Trần Thị Mai' : 'Học Sinh Apple';
+      const role = authSelectedRole || 'student';
+      
+      const now = new Date();
+      const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
+
+      currentUser = {
+        id: 'usr_apple_' + Date.now(),
+        email: email,
+        name: name,
+        role: role,
+        grade: '8A1',
+        school: 'THCS Chu Văn An',
+        createdAt: now.toISOString(),
+        trialExpiresAt: trialExpires,
+        userApiKey: '',
+        quota: { count: 0, windowStart: Date.now() }
+      };
+
+      saveCurrentUser();
+      updateAuthHeaderUI();
+      toggleAuthModal();
+
+      confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+      showToast('success', 'Đăng nhập Apple thành công! 🍏', `Chào mừng ${name}!`);
+      if (role === 'teacher') setTimeout(toggleTeacherGuideModal, 600);
+    }
+
+    function handleMicrosoftSignIn() {
+      const email = `ms.user${Math.floor(Math.random()*9000)+1000}@outlook.com`;
+      const name = authSelectedRole === 'teacher' ? 'Thầy Lê Hoàng Long' : 'Học Sinh Microsoft';
+      const role = authSelectedRole || 'student';
+      
+      const now = new Date();
+      const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
+
+      currentUser = {
+        id: 'usr_ms_' + Date.now(),
+        email: email,
+        name: name,
+        role: role,
+        grade: '8A1',
+        school: 'THCS Chu Văn An',
+        createdAt: now.toISOString(),
+        trialExpiresAt: trialExpires,
+        userApiKey: '',
+        quota: { count: 0, windowStart: Date.now() }
+      };
+
+      saveCurrentUser();
+      updateAuthHeaderUI();
+      toggleAuthModal();
+
+      confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+      showToast('success', 'Đăng nhập Microsoft thành công! ⊞', `Chào mừng ${name}!`);
+      if (role === 'teacher') setTimeout(toggleTeacherGuideModal, 600);
+    }
+
+    function handlePhoneSignIn() {
+      const phone = prompt('Nhập số điện thoại của bạn (Ví dụ: 0988123456):', '0988123456');
+      if (!phone) return;
+
+      const email = `${phone.trim()}@phone.tailieugdso.vn`;
+      const name = `Người dùng ${phone.slice(-4)}`;
+      const role = authSelectedRole || 'student';
+      
+      const now = new Date();
+      const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
+
+      currentUser = {
+        id: 'usr_phone_' + Date.now(),
+        email: email,
+        name: name,
+        role: role,
+        grade: '8A1',
+        school: 'THCS Chu Văn An',
+        createdAt: now.toISOString(),
+        trialExpiresAt: trialExpires,
+        userApiKey: '',
+        quota: { count: 0, windowStart: Date.now() }
+      };
+
+      saveCurrentUser();
+      updateAuthHeaderUI();
+      toggleAuthModal();
+
+      confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+      showToast('success', 'Đăng nhập SĐT thành công! 📞', `Chào mừng ${name}!`);
+      if (role === 'teacher') setTimeout(toggleTeacherGuideModal, 600);
+    }
+
     function handleAuthSubmit(e) {
       e.preventDefault();
       const email = document.getElementById('auth-email-input').value.trim();
       const now = new Date();
       const trialExpires = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
 
-      if (authMode === 'register') {
-        const fullname = document.getElementById('auth-fullname-input').value.trim() || 'Thành Viên Mới';
-        const grade = document.getElementById('auth-grade-input').value.trim() || '8A1';
-        const school = document.getElementById('auth-school-input').value.trim() || 'Trường THCS';
+      currentUser = {
+        id: 'usr_' + Date.now(),
+        email: email,
+        name: email.split('@')[0],
+        role: authSelectedRole,
+        grade: '8A1',
+        school: 'THCS Chu Văn An',
+        createdAt: now.toISOString(),
+        trialExpiresAt: trialExpires,
+        userApiKey: '',
+        quota: { count: 0, windowStart: Date.now() }
+      };
 
-        currentUser = {
-          id: 'usr_' + Date.now(),
-          email: email,
-          name: fullname,
-          role: authSelectedRole,
-          grade: grade,
-          school: school,
-          createdAt: now.toISOString(),
-          trialExpiresAt: trialExpires,
-          userApiKey: '',
-          quota: { count: 0, windowStart: Date.now() }
-        };
+      saveCurrentUser();
+      updateAuthHeaderUI();
+      toggleAuthModal();
+      confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+      showToast('success', 'Đăng nhập thành công! 🎉', `Chào mừng ${currentUser.name}!`);
 
-        studentProfile.name = fullname;
-        studentProfile.grade = grade;
-        studentProfile.school = school;
-        try { localStorage.setItem('ai_math_student_profile_v2', JSON.stringify(studentProfile)); } catch(e){}
+      if (authSelectedRole === 'teacher') setTimeout(toggleTeacherGuideModal, 600);
+    }
 
-        saveCurrentUser();
-        updateAuthHeaderUI();
-        updateProfileDisplayUI();
-        toggleAuthModal();
+    // ==========================================
+    // RESET CHATBOT INTERFACE ENGINE
+    // ==========================================
+    function resetChatbotUI() {
+      state.messages = [];
+      state.attachedImage = null;
+      state.isGenerating = false;
+      
+      const input = document.getElementById('chat-input');
+      if (input) input.value = '';
 
-        confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
-        if (authSelectedRole === 'teacher') {
-          showToast('success', 'Đăng ký thành công! 👨‍🏫', `Chào mừng ${fullname}! Bạn có 5 ngày dùng thử miễn phí.`);
-          setTimeout(toggleTeacherGuideModal, 600);
-        } else {
-          showToast('success', 'Đăng ký thành công! 🧑‍🎓', `Chào mừng ${fullname}! Bạn được sử dụng API Key Admin (30 câu/60p).`);
-        }
-      } else {
-        // Login mode
-        if (!currentUser) {
-          currentUser = {
-            id: 'usr_' + Date.now(),
-            email: email,
-            name: email.split('@')[0],
-            role: 'student',
-            grade: '8A1',
-            school: 'THCS Chu Văn An',
-            createdAt: now.toISOString(),
-            trialExpiresAt: trialExpires,
-            userApiKey: '',
-            quota: { count: 0, windowStart: Date.now() }
-          };
-        }
-        currentUser.email = email;
-        saveCurrentUser();
-        updateAuthHeaderUI();
-        toggleAuthModal();
-        showToast('success', 'Đăng nhập thành công! 🎉', `Chào mừng trở lại ${currentUser.name}!`);
+      const previewContainer = document.getElementById('image-attachment-preview');
+      if (previewContainer) previewContainer.classList.add('hidden');
+
+      const container = document.getElementById('messages-container');
+      if (container) {
+        container.innerHTML = `
+          <!-- Welcome Hero Banner -->
+          <div id="welcome-hero-card" class="p-5 sm:p-7 rounded-[1.75rem] bg-gradient-to-br from-blue-50/90 via-indigo-50/60 to-white dark:from-dark-surface dark:via-dark-card dark:to-dark-surface border border-slate-200/80 dark:border-dark-border shadow-lux-sm space-y-4 text-center">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-3xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-500 text-white font-black text-2xl shadow-lg shadow-blue-500/25 mb-1 animate-pulse">
+              8
+            </div>
+            <div class="space-y-1">
+              <h2 class="font-black text-lg sm:text-2xl text-slate-900 dark:text-white tracking-tight">
+                AI Math Studio 8 Pro • Trợ Lý Tự Học & Luyện Thi
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium max-w-xl mx-auto leading-relaxed">
+                Trợ lý sư phạm Toán 8 chuẩn chương trình GDPT 2018. Đặt câu hỏi, nhận gợi mở Socratic 4 bước, vẽ đồ thị hàm số và chấm chữa bài viết tay trực quan.
+              </p>
+            </div>
+
+            <!-- Features 4 Pills Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 max-w-2xl mx-auto text-[11px] font-bold">
+              <div class="p-2.5 rounded-2xl bg-white/80 dark:bg-dark-surface/80 border border-slate-200/80 dark:border-dark-border flex items-center justify-center gap-1.5 shadow-2xs">
+                <span>💡</span>
+                <span class="truncate">Gợi mở Socratic</span>
+              </div>
+              <div class="p-2.5 rounded-2xl bg-white/80 dark:bg-dark-surface/80 border border-slate-200/80 dark:border-dark-border flex items-center justify-center gap-1.5 shadow-2xs">
+                <span>📐</span>
+                <span class="truncate">Vẽ Đồ Thị <span class="katex-inline font-normal text-blue-700 dark:text-cyan-400" data-math="y = ax + b"></span></span>
+              </div>
+              <div class="p-2.5 rounded-2xl bg-white/80 dark:bg-dark-surface/80 border border-slate-200/80 dark:border-dark-border flex items-center justify-center gap-1.5 shadow-2xs">
+                <span>🎴</span>
+                <span class="truncate">Thẻ Ghi Nhớ 3D</span>
+              </div>
+              <div class="p-2.5 rounded-2xl bg-white/80 dark:bg-dark-surface/80 border border-slate-200/80 dark:border-dark-border flex items-center justify-center gap-1.5 shadow-2xs">
+                <span>📄</span>
+                <span class="truncate">Xuất Đề Thi PDF</span>
+              </div>
+            </div>
+          </div>
+        `;
       }
+
+      renderStaticKaTeXElements();
+      lucide.createIcons();
+      showToast('info', 'Đã làm mới!', 'Giao diện Chatbot đã được làm mới sạch sẽ.');
     }
 
     function toggleTeacherGuideModal() {
