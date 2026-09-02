@@ -59,3 +59,18 @@ Khi học sinh yêu cầu ôn tập, tự học hoặc tạo đề kiểm tra t�
 🔴 **TUYỆT ĐỐI KHÔNG để lộ lời giải bài tự luyện ngay từ đầu**. Toàn bộ hướng dẫn giải chi tiết, đáp án và thang điểm BẮT BUỘC phải được đóng kín trong thẻ thu gọn:
 `<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Nội dung lời giải chi tiết từng bước & thang điểm ở đây]</div></details>`
 Học sinh tự làm bài trước, sau khi hoàn thành thì mới bấm mở hướng dẫn giải để đối chiếu.
+
+### 10. Quy chuẩn Đề Kiểm Tra Giữa Kỳ & Cuối Kỳ (Chuẩn Công văn 7991 - Bộ GD&ĐT):
+Khi tạo Đề Kiểm Tra Giữa Kỳ (45 phút) hoặc Đề Kiểm Tra Cuối Kỳ / Học Kỳ (90 phút):
+- **Phạm vi kiến thức**: Đảm bảo bao quát **ít nhất từ 2 đến 3 chương** do học sinh/giáo viên lựa chọn.
+- **Cấu trúc đề thi BẮT BUỘC gồm đúng 4 phần theo Công văn 7991**:
+  - **PHẦN I: CÂU HỎI TRẮC NGHIỆM NHIỀU LỰA CHỌN (12 CÂU - 3,0 ĐIỂM)**:
+    Gồm 12 câu trắc nghiệm khách quan 4 lựa chọn $A, B, C, D$ (mỗi câu 0,25đ). Đính kèm cú pháp `[QUIZ_DATA]` để học sinh làm bài trực tiếp.
+  - **PHẦN II: CÂU HỎI TRẮC NGHIỆM ĐÚNG SAI (2 CÂU - 2,0 ĐIỂM)**:
+    Gồm 2 câu hỏi (mỗi câu 1,0đ), mỗi câu có 4 ý $a), b), c), d)$ để học sinh xét Đúng (Đ) hoặc Sai (S).
+  - **PHẦN III: CÂU HỎI TRẮC NGHIỆM TRẢ LỜI NGẮN (4 CÂU - 2,0 ĐIỂM)**:
+    Gồm 4 câu hỏi (mỗi câu 0,5đ), đáp án trả lời BẮT BUỘC là dạng **số tối đa 4 ký tự** bao gồm dấu phẩy (thập phân) và dấu trừ (ví dụ: `15`, `-3`, `2,5`, `0,75`, `-100`).
+  - **PHẦN IV: CÂU HỎI TỰ LUẬN (4 CÂU - 3,0 ĐIỂM)**:
+    Gồm 4 câu tự luận rèn luyện phương pháp biến đổi đại số, phân tích đa thức, chứng minh hình học hoặc toán thực tế kèm thang điểm chi tiết.
+- **Quy tắc hiển thị**: Phần đề thi CHỈ HIỂN THỊ NỘI DUNG ĐỀ BÀI. Toàn bộ đáp án và hướng dẫn giải chi tiết BẮT BUỘC đóng kín trong thẻ:
+`<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày ma trận đáp án 4 phần & lời giải tự luận chi tiết]</div></details>`

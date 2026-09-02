@@ -1908,7 +1908,7 @@
     </div>
   </div>
 
-  <!-- MODAL: NGÂN HÀNG ĐỀ THI 4 MỨC ĐỘ -->
+  <!-- MODAL: NGÂN HÀNG ĐỀ THI PHÂN HÓA & CHUẨN CÔNG VĂN 7991 -->
   <div id="exam-bank-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs hidden flex items-center justify-center p-4">
     <div class="bg-white dark:bg-dark-card border border-slate-300 dark:border-dark-border w-full max-w-2xl rounded-3xl p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto custom-scrollbar">
       <div class="flex items-center justify-between border-b border-slate-100 dark:border-dark-border pb-3">
@@ -1917,8 +1917,8 @@
             <i data-lucide="layers" class="w-4 h-4"></i>
           </div>
           <div>
-            <h3 class="font-extrabold text-sm text-slate-900 dark:text-white">Ngân Hàng Bài Tập & Đề Thi Phân Hóa Toán 8</h3>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400">Chuẩn 4 mức độ nhận thức GDPT 2018</p>
+            <h3 class="font-extrabold text-sm text-slate-900 dark:text-white">Ngân Hàng Đề Thi Toán 8 Chuẩn Công Văn 7991/BGDĐT</h3>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 font-bold">Đề thi phân hóa 4 phần: Trắc nghiệm (12c - 3đ), Đúng/Sai (2c - 2đ), Trả lời ngắn (4c - 2đ), Tự luận (4c - 3đ)</p>
           </div>
         </div>
         <button onclick="toggleExamBankModal()" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-lg">
@@ -1927,49 +1927,114 @@
       </div>
 
       <div class="space-y-4 text-xs">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="font-bold text-slate-800 dark:text-slate-200 block mb-1">Chọn Chương Học:</label>
-            <select id="exam-chapter-select" class="w-full bg-slate-50 dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-2xl p-2.5 font-bold text-slate-800 dark:text-white outline-none">
-              <option value="Chương 1: Đa thức nhiều biến">Chương 1: Đa thức nhiều biến (Tập 1)</option>
-              <option value="Chương 2: 7 Hằng đẳng thức đáng nhớ" selected>Chương 2: Hằng đẳng thức đáng nhớ (Tập 1)</option>
-              <option value="Chương 3: Tứ giác và các hình đặc biệt">Chương 3: Tứ giác (Tập 1)</option>
-              <option value="Chương 4: Định lí Thalès trong tam giác">Chương 4: Định lí Thalès (Tập 1)</option>
-              <option value="Chương 5: Dữ liệu và biểu đồ">Chương 5: Dữ liệu và biểu đồ (Tập 1)</option>
-              <option value="Chương 6: Phân thức đại số">Chương 6: Phân thức đại số (Tập 2)</option>
-              <option value="Chương 7: Phương trình bậc nhất một ẩn">Chương 7: Phương trình & Hàm số (Tập 2)</option>
-              <option value="Chương 8: Xác suất biến cố">Chương 8: Xác suất biến cố (Tập 2)</option>
-              <option value="Chương 9: Tam giác đồng dạng">Chương 9: Tam giác đồng dạng (Tập 2)</option>
-              <option value="Chương 10: Một số hình khối trong thực tiễn">Chương 10: Hình khối thực tiễn (Tập 2)</option>
-            </select>
+        <!-- Preset Selector Quick Buttons -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="font-extrabold text-slate-800 dark:text-slate-200">1. Chọn Nhanh Phạm Vi Chương (Tự động chọn 2 - 3 chương):</label>
           </div>
-          <div>
-            <label class="font-bold text-slate-800 dark:text-slate-200 block mb-1">Mức Độ Nhận Thức:</label>
-            <select id="exam-level-select" class="w-full bg-slate-50 dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-2xl p-2.5 font-bold text-slate-800 dark:text-white outline-none">
-              <option value="Mức 1 (Nhận biết): Trọng tâm lý thuyết và công thức cơ bản">🟢 Mức 1: Nhận biết</option>
-              <option value="Mức 2 (Thông hiểu): Tính toán trực tiếp và nhận dạng bài toán" selected>🔵 Mức 2: Thông hiểu</option>
-              <option value="Mức 3 (Vận dụng): Giải toán tổng hợp và liên hệ thực tiễn">🟡 Mức 3: Vận dụng</option>
-              <option value="Mức 4 (Vận dụng cao): Chứng minh hình học phức tạp hoặc bất đẳng thức">🔴 Mức 4: Vận dụng cao</option>
-            </select>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+            <button type="button" onclick="selectExamChapterPreset('gk1')" class="p-2 rounded-xl bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 border border-blue-200 dark:border-blue-900 text-blue-900 dark:text-blue-200 font-bold text-[11px] text-center transition">
+              📘 Giữa Kỳ I (Ch 1,2,3)
+            </button>
+            <button type="button" onclick="selectExamChapterPreset('ck1')" class="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 border border-indigo-200 dark:border-indigo-900 text-indigo-900 dark:text-indigo-200 font-bold text-[11px] text-center transition">
+              🎓 Cuối Kỳ I (Ch 1-5)
+            </button>
+            <button type="button" onclick="selectExamChapterPreset('gk2')" class="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 border border-emerald-200 dark:border-emerald-900 text-emerald-900 dark:text-emerald-200 font-bold text-[11px] text-center transition">
+              📘 Giữa Kỳ II (Ch 6,7,8)
+            </button>
+            <button type="button" onclick="selectExamChapterPreset('ck2')" class="p-2 rounded-xl bg-purple-50 dark:bg-purple-950/60 hover:bg-purple-100 border border-purple-200 dark:border-purple-900 text-purple-900 dark:text-purple-200 font-bold text-[11px] text-center transition">
+              🎓 Cuối Kỳ II (Ch 6-10)
+            </button>
           </div>
         </div>
 
+        <!-- 10 Chapters Checkboxes -->
         <div>
-          <label class="font-bold text-slate-800 dark:text-slate-200 block mb-1.5">Mẫu Đề Thi Nhanh:</label>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="font-extrabold text-slate-800 dark:text-slate-200">2. Hoặc Tự Tích Chọn Các Chương Tham Gia Kiểm Tra:</label>
+            <span id="selected-chapters-count-lbl" class="text-[10px] font-bold text-indigo-600 dark:text-cyan-400">Đã chọn 2 chương (✅ Chuẩn CV 7991)</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-48 overflow-y-auto custom-scrollbar p-2 bg-slate-50 dark:bg-dark-surface rounded-2xl border border-slate-200 dark:border-dark-border">
+            <label class="flex items-center gap-2 p-1.5 bg-white dark:bg-dark-card rounded-xl border border-slate-200/80 dark:border-dark-border cursor-pointer hover:border-indigo-400 transition">
+              <input type="checkbox" id="ch1" class="exam-chapter-checkbox rounded text-indigo-600" value="Chương 1: Đa thức nhiều biến" onchange="updateSelectedChaptersCount()" checked />
+              <span class="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">Chương 1: Đa thức nhiều biến (T1)</span>
+            </label>
+            <label class="flex items-center gap-2 p-1.5 bg-white dark:bg-dark-card rounded-xl border border-slate-200/80 dark:border-dark-border cursor-pointer hover:border-indigo-400 transition">
+              <input type="checkbox" id="ch2" class="exam-chapter-checkbox rounded text-indigo-600" value="Chương 2: 7 Hằng đẳng thức đáng nhớ" onchange="updateSelectedChaptersCount()" checked />
+              <span class="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">Chương 2: 7 Hằng đẳng thức (T1)</span>
+            </label>
+            <label class="flex items-center gap-2 p-1.5 bg-white dark:bg-dark-card rounded-xl border border-slate-200/80 dark:border-dark-border cursor-pointer hover:border-indigo-400 transition">
+              <input type="checkbox" id="ch3" class="exam-chapter-checkbox rounded text-indigo-600" value="Chương 3: Tứ giác và các hình đặc biệt" onchange="updateSelectedChaptersCount()" />
+              <span class="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">Chương 3: Tứ giác (T1)</span>
+            </label>
+            <label class="flex items-center gap-2 p-1.5 bg-white dark:bg-dark-card rounded-xl border border-slate-200/80 dark:border-dark-border cursor-pointer hover:border-indigo-400 transition">
+              <input type="checkbox" id="ch4" class="exam-chapter-checkbox rounded text-indigo-600" value="Chương 4: Định lí Thalès trong tam giác" onchange="updateSelectedChaptersCount()" />
+              <span class="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">Chương 4: Định lí Thalès (T1)</span>
+            </label>
+            <label class="flex items-center gap-2 p-1.5 bg-white dark:bg-dark-card rounded-xl border border-slate-200/80 dark:border-dark-border cursor-pointer hover:border-indigo-400 transition">
+              <input type="checkbox" id="ch5" class="exam-chapter-checkbox rounded text-indigo-600" value="Chương 5: Dữ liệu và biểu đồ thống kê" onchange="updateSelectedChaptersCount()" />
+              <span class="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">Chương 5: Dữ liệu và biểu đồ (T1)</span>
+            </label>
+            <label class="flex items-center gap-2 p-1.5 bg-white dark:bg-dark-card rounded-xl border border-slate-200/80 dark:border-dark-border cursor-pointer hover:border-indigo-400 transition">
+              <input type="checkbox" id="ch6" class="exam-chapter-checkbox rounded text-indigo-600" value="Chương 6: Phân thức đại số" onchange="updateSelectedChaptersCount()" />
+              <span class="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">Chương 6: Phân thức đại số (T2)</span>
+            </label>
+            <label class="flex items-center gap-2 p-1.5 bg-white dark:bg-dark-card rounded-xl border border-slate-200/80 dark:border-dark-border cursor-pointer hover:border-indigo-400 transition">
+              <input type="checkbox" id="ch7" class="exam-chapter-checkbox rounded text-indigo-600" value="Chương 7: Phương trình bậc nhất & Hàm số bậc nhất" onchange="updateSelectedChaptersCount()" />
+              <span class="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">Chương 7: Phương trình & Hàm số (T2)</span>
+            </label>
+            <label class="flex items-center gap-2 p-1.5 bg-white dark:bg-dark-card rounded-xl border border-slate-200/80 dark:border-dark-border cursor-pointer hover:border-indigo-400 transition">
+              <input type="checkbox" id="ch8" class="exam-chapter-checkbox rounded text-indigo-600" value="Chương 8: Xác suất biến cố" onchange="updateSelectedChaptersCount()" />
+              <span class="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">Chương 8: Xác suất biến cố (T2)</span>
+            </label>
+            <label class="flex items-center gap-2 p-1.5 bg-white dark:bg-dark-card rounded-xl border border-slate-200/80 dark:border-dark-border cursor-pointer hover:border-indigo-400 transition">
+              <input type="checkbox" id="ch9" class="exam-chapter-checkbox rounded text-indigo-600" value="Chương 9: Tam giác đồng dạng" onchange="updateSelectedChaptersCount()" />
+              <span class="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">Chương 9: Tam giác đồng dạng (T2)</span>
+            </label>
+            <label class="flex items-center gap-2 p-1.5 bg-white dark:bg-dark-card rounded-xl border border-slate-200/80 dark:border-dark-border cursor-pointer hover:border-indigo-400 transition">
+              <input type="checkbox" id="ch10" class="exam-chapter-checkbox rounded text-indigo-600" value="Chương 10: Một số hình khối trong thực tiễn" onchange="updateSelectedChaptersCount()" />
+              <span class="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">Chương 10: Hình khối thực tiễn (T2)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Exam Types Selection -->
+        <div>
+          <label class="font-extrabold text-slate-800 dark:text-slate-200 block mb-1.5">3. Chọn Loại Đề Thi Cần Xuất:</label>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <button type="button" onclick="generatePresetExam('15p')" class="p-3 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 border border-indigo-200 dark:border-indigo-900 text-left transition">
-              <div class="font-extrabold text-indigo-950 dark:text-indigo-200 text-xs">📝 Đề 15 Phút</div>
-              <div class="text-[10px] text-indigo-700 dark:text-indigo-400 mt-0.5">4 câu trắc nghiệm + 1 tự luận</div>
+            <button type="button" onclick="generatePresetExam('15p')" class="p-3 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 border border-indigo-200 dark:border-indigo-900 text-left transition group">
+              <div class="font-extrabold text-indigo-950 dark:text-indigo-200 text-xs flex items-center justify-between">
+                <span>📝 Đề 15 Phút</span>
+                <span class="text-[9px] px-1.5 py-0.5 rounded bg-indigo-200/70 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200">1 Chương</span>
+              </div>
+              <div class="text-[10px] text-indigo-700 dark:text-indigo-400 mt-1">💡 Kiến thức + Ví dụ + 4 Trắc nghiệm + 1 Tự luận</div>
             </button>
-            <button type="button" onclick="generatePresetExam('45p')" class="p-3 rounded-2xl bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 border border-blue-200 dark:border-blue-900 text-left transition">
-              <div class="font-extrabold text-blue-950 dark:text-blue-200 text-xs">📋 Đề Giữa Kỳ (45p)</div>
-              <div class="text-[10px] text-blue-700 dark:text-blue-400 mt-0.5">70% trắc nghiệm + 30% tự luận</div>
+            <button type="button" onclick="generatePresetExam('45p')" class="p-3 rounded-2xl bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 border-2 border-blue-400 dark:border-blue-700 text-left transition relative shadow-sm">
+              <div class="font-extrabold text-blue-950 dark:text-blue-200 text-xs flex items-center justify-between">
+                <span>📋 Đề Giữa Kỳ (45p)</span>
+                <span class="text-[9px] px-1.5 py-0.5 rounded-full bg-blue-600 text-white font-black">CV 7991</span>
+              </div>
+              <div class="text-[10px] text-blue-700 dark:text-blue-300 mt-1 font-semibold">12 TN (3đ) + 2 Đ/S (2đ) + 4 Ngắn (2đ) + 4 TL (3đ)</div>
             </button>
-            <button type="button" onclick="generatePresetExam('90p')" class="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 border border-emerald-200 dark:border-emerald-900 text-left transition">
-              <div class="font-extrabold text-emerald-950 dark:text-emerald-200 text-xs">🎓 Đề Học Kỳ (90p)</div>
-              <div class="text-[10px] text-emerald-700 dark:text-emerald-400 mt-0.5">Chuẩn ma trận Bộ GD&ĐT</div>
+            <button type="button" onclick="generatePresetExam('90p')" class="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 border-2 border-emerald-400 dark:border-emerald-700 text-left transition relative shadow-sm">
+              <div class="font-extrabold text-emerald-950 dark:text-emerald-200 text-xs flex items-center justify-between">
+                <span>🎓 Đề Cuối Kỳ (90p)</span>
+                <span class="text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-600 text-white font-black">CV 7991</span>
+              </div>
+              <div class="text-[10px] text-emerald-700 dark:text-emerald-300 mt-1 font-semibold">Tổng hợp 2-3 chương ma trận 4 phần chuẩn Bộ</div>
             </button>
           </div>
+        </div>
+
+        <!-- Cognitive Level for Custom -->
+        <div class="pt-1">
+          <label class="font-bold text-slate-700 dark:text-slate-300 block mb-1">Mức Độ Phân Hóa Tự Luyện Riêng:</label>
+          <select id="exam-level-select" class="w-full bg-slate-50 dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-2xl p-2.5 font-bold text-slate-800 dark:text-white outline-none">
+            <option value="Mức 1 (Nhận biết): Trọng tâm lý thuyết và công thức cơ bản">🟢 Mức 1: Nhận biết</option>
+            <option value="Mức 2 (Thông hiểu): Tính toán trực tiếp và nhận dạng bài toán" selected>🔵 Mức 2: Thông hiểu</option>
+            <option value="Mức 3 (Vận dụng): Giải toán tổng hợp và liên hệ thực tiễn">🟡 Mức 3: Vận dụng</option>
+            <option value="Mức 4 (Vận dụng cao): Chứng minh hình học phức tạp hoặc bất đẳng thức">🔴 Mức 4: Vận dụng cao</option>
+          </select>
         </div>
       </div>
 
@@ -1977,7 +2042,7 @@
         <button type="button" onclick="toggleExamBankModal()" class="px-4 py-2 rounded-2xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-xs">Đóng</button>
         <button type="button" onclick="submitCustomExamRequest()" class="px-5 py-2 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition active:scale-95 flex items-center gap-1.5">
           <i data-lucide="sparkles" class="w-4 h-4"></i>
-          <span>Xuất Đề & Luyện Ngay</span>
+          <span>Xuất Đề Tự Chọn & Luyện Ngay</span>
         </button>
       </div>
     </div>
@@ -3981,42 +4046,56 @@
       if (!container) return;
 
       const dateStr = new Date().toLocaleDateString('vi-VN');
-      const renderedContent = renderMathAndMarkdown(examText);
+
+      let printableText = (examText || '').replace(/\[QUIZ_DATA:\s*(\{.*?\})\]/gs, (match, jsonStr) => {
+        try {
+          const q = JSON.parse(jsonStr);
+          let optHtml = '';
+          if (Array.isArray(q.options)) {
+            optHtml = '\n\n' + q.options.map(opt => `  • ${opt}`).join('\n');
+          }
+          return `\n\n**${q.question || ''}**${optHtml}\n\n`;
+        } catch (e) {
+          return '';
+        }
+      });
+
+      const renderedContent = renderMathAndMarkdown(printableText);
 
       container.innerHTML = `
-        <div style="font-family: 'Times New Roman', serif; color: black; line-height: 1.5; padding: 20px;">
+        <div style="font-family: 'Times New Roman', serif; color: black; line-height: 1.5; padding: 25px; background: white;">
           <table style="width: 100%; border: none; margin-bottom: 15px;">
             <tr>
-              <td style="width: 50%; text-align: center; vertical-align: top;">
-                <strong>PHÒNG GD&ĐT QUẬN / HUYỆN</strong><br>
-                <strong>${escapeHtml(studentProfile.school.toUpperCase())}</strong><br>
-                <em>Cổng học liệu: tailieugdso.vn</em>
+              <td style="width: 45%; text-align: center; vertical-align: top; border: none;">
+                <strong>PHÒNG GD&ĐT THÀNH PHỐ ĐÀ LẠT</strong><br>
+                <strong>${escapeHtml((studentProfile.school || 'TRƯỜNG THCS QUANG TRUNG').toUpperCase())}</strong><br>
+                <em>Tổ Tự Nhiên - Cổng tailieugdso.vn</em>
               </td>
-              <td style="width: 50%; text-align: center; vertical-align: top;">
+              <td style="width: 55%; text-align: center; vertical-align: top; border: none;">
                 <strong>ĐỀ KIỂM TRA ĐỊNH KỲ MÔN TOÁN 8</strong><br>
-                <em>Năm học 2025 - 2026 • Chương trình GDPT 2018</em><br>
-                <em>Thời gian làm bài: 45 phút (Không kể phát đề)</em>
+                <strong>CHUẨN CẤU TRÚC CÔNG VĂN 7991/BGDĐT</strong><br>
+                <em>Năm học: 2025 - 2026 • Chương trình GDPT 2018</em>
               </td>
             </tr>
           </table>
 
-          <div style="border: 1px solid black; padding: 8px; margin-bottom: 20px; font-size: 13pt;">
+          <div style="border: 1.5px solid black; padding: 8px 12px; margin-bottom: 20px; font-size: 13pt;">
             <table style="width: 100%; border: none;">
               <tr>
-                <td><strong>Họ và tên học sinh:</strong> ${escapeHtml(studentProfile.name)}</td>
-                <td><strong>Lớp:</strong> ${escapeHtml(studentProfile.grade)}</td>
-                <td><strong>Ngày kiểm tra:</strong> ${dateStr}</td>
+                <td style="border: none; width: 45%;"><strong>Họ và tên học sinh:</strong> ${escapeHtml(studentProfile.name)}</td>
+                <td style="border: none; width: 25%;"><strong>Lớp:</strong> ${escapeHtml(studentProfile.grade)}</td>
+                <td style="border: none; width: 30%;"><strong>Ngày làm bài:</strong> ${dateStr}</td>
               </tr>
             </table>
           </div>
 
-          <div style="font-size: 13pt;">
+          <div class="prose-markdown" style="font-size: 13pt; color: black;">
             ${renderedContent}
           </div>
 
-          <div style="margin-top: 40px; text-align: center; font-style: italic;">
+          <div style="margin-top: 35px; text-align: center; font-style: italic; border-top: 1px dashed #666; padding-top: 15px;">
             ------------------ HẾT ------------------<br>
-            <em>(Cán bộ coi thi không giải thích gì thêm)</em>
+            <em>(Học sinh không được sử dụng tài liệu • Cán bộ coi thi không giải thích gì thêm)</em>
           </div>
         </div>
       `;
@@ -4152,42 +4231,95 @@
     }
 
     function generatePresetExam(type) {
+    function getSelectedExamChapters() {
+      const checkedBoxes = Array.from(document.querySelectorAll('.exam-chapter-checkbox:checked'));
+      if (checkedBoxes.length > 0) {
+        return checkedBoxes.map(cb => cb.value);
+      }
+      return ['Chương 1: Đa thức nhiều biến', 'Chương 2: 7 Hằng đẳng thức đáng nhớ'];
+    }
+
+    function selectExamChapterPreset(preset) {
+      document.querySelectorAll('.exam-chapter-checkbox').forEach(cb => cb.checked = false);
+      if (preset === 'gk1') {
+        ['ch1', 'ch2', 'ch3'].forEach(id => { const el = document.getElementById(id); if (el) el.checked = true; });
+      } else if (preset === 'ck1') {
+        ['ch1', 'ch2', 'ch3', 'ch4', 'ch5'].forEach(id => { const el = document.getElementById(id); if (el) el.checked = true; });
+      } else if (preset === 'gk2') {
+        ['ch6', 'ch7', 'ch8'].forEach(id => { const el = document.getElementById(id); if (el) el.checked = true; });
+      } else if (preset === 'ck2') {
+        ['ch6', 'ch7', 'ch8', 'ch9', 'ch10'].forEach(id => { const el = document.getElementById(id); if (el) el.checked = true; });
+      }
+      updateSelectedChaptersCount();
+    }
+
+    function updateSelectedChaptersCount() {
+      const count = document.querySelectorAll('.exam-chapter-checkbox:checked').length;
+      const lbl = document.getElementById('selected-chapters-count-lbl');
+      if (lbl) {
+        lbl.innerText = `Đã chọn ${count} chương ${count < 2 ? '(⚠️ Khuyên chọn từ 2 - 3 chương cho đề Giữa kỳ / Cuối kỳ)' : '(✅ Đạt chuẩn Công văn 7991)'}`;
+      }
+    }
+
+    function generatePresetExam(type) {
       toggleExamBankModal();
-      const chapter = document.getElementById('exam-chapter-select').value;
+      const chapters = getSelectedExamChapters();
+      const chaptersListStr = chapters.join(', ');
+
       if (type === '15p') {
-        sendQuickPrompt(`Hãy biên soạn nội dung tự học và Đề Kiểm Tra 15 Phút môn Toán 8 về [${chapter}] chuẩn 3 phần:
+        sendQuickPrompt(`Hãy biên soạn ĐỀ KIỂM TRA 15 PHÚT MÔN TOÁN 8 về [${chapters[0] || chaptersListStr}] chuẩn 3 phần:
 1. 💡 Kiến thức cần nhớ (Tóm tắt định nghĩa, hằng đẳng thức/công thức cốt lõi và số trang SGK).
 2. 📝 Ví dụ minh họa (1 bài tập mẫu có phân tích phương pháp giải).
 3. ✍️ Bài tập tương tự tự luyện: gồm 4 câu trắc nghiệm tương tác (đính kèm [QUIZ_DATA]) và 1 câu tự luận.
 🔴 LƯU Ý SƯ PHẠM: KHÔNG nêu lời giải tự luận ngay từ đầu. Hãy đóng kín toàn bộ hướng dẫn giải chi tiết và thang điểm trong thẻ thu gọn:
-<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày các bước giải chi tiết & thang điểm]</div></details> để học sinh tự suy nghĩ làm bài trước.`);
+<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày các bước giải chi tiết & thang điểm]</div></details> để học sinh tự làm trước.`);
       } else if (type === '45p') {
-        sendQuickPrompt(`Hãy biên soạn nội dung tự học và Đề Kiểm Tra Giữa Kỳ (45 Phút) môn Toán 8 về [${chapter}] chuẩn 3 phần:
-1. 💡 Kiến thức cần nhớ.
-2. 📝 Ví dụ minh họa có phương pháp giải.
-3. ✍️ Đề tự luyện: 8 câu trắc nghiệm tương tác (đính kèm [QUIZ_DATA]) và 2 câu tự luận tổng hợp.
-🔴 LƯU Ý SƯ PHẠM: Đóng kín toàn bộ hướng dẫn giải tự luận và thang điểm trong thẻ thu gọn:
-<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày các bước giải chi tiết & thang điểm]</div></details> để học sinh tự làm trước.`);
+        sendQuickPrompt(`Hãy biên soạn một ĐỀ KIỂM TRA GIỮA KỲ (45 PHÚT) MÔN TOÁN 8 CHUẨN ĐỊNH DẠNG CÔNG VĂN 7991 CỦA BỘ GD&ĐT tổng hợp kiến thức từ các chương: [${chaptersListStr}].
+Cấu trúc đề thi BẮT BUỘC gồm đúng 4 phần:
+- PHẦN I: TRẮC NGHIỆM NHIỀU LỰA CHỌN (12 CÂU - 3,0 ĐIỂM)
+  (12 câu trắc nghiệm 4 lựa chọn A, B, C, D, mỗi câu 0,25đ, đính kèm [QUIZ_DATA] tương tác).
+- PHẦN II: TRẮC NGHIỆM ĐÚNG SAI (2 CÂU - 2,0 ĐIỂM)
+  (Mỗi câu gồm 4 khẳng định a, b, c, d để học sinh xét Đúng/Sai. Thang điểm: đúng 1 ý 0,1đ, đúng 2 ý 0,25đ, đúng 3 ý 0,5đ, đúng 4 ý 1,0đ).
+- PHẦN III: TRẮC NGHIỆM TRẢ LỜI NGẮN (4 CÂU - 2,0 ĐIỂM)
+  (4 câu hỏi tính toán, mỗi câu 0,5đ, đáp án là số tối đa 4 ký tự bao gồm dấu phẩy và dấu trừ).
+- PHẦN IV: TỰ LUẬN (4 CÂU - 3,0 ĐIỂM)
+  (4 câu tự luận rèn luyện phương pháp biến đổi đại số, hình học thực tiễn, phân hóa học sinh).
+
+🔴 LƯU Ý SƯ PHẠM:
+- Chỉ hiển thị nội dung đề bài để học sinh tự làm và tải file về máy.
+- KHÔNG để lộ lời giải ngay từ đầu. Hãy đóng kín toàn bộ Hướng dẫn giải chi tiết, ma trận đáp án 4 phần và thang điểm trong thẻ thu gọn:
+<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày ma trận đáp án Phần I, II, III và lời giải chi tiết Phần IV]</div></details>.`);
       } else {
-        sendQuickPrompt(`Hãy biên soạn nội dung ôn tập và Đề Thi Học Kỳ (90 Phút) môn Toán 8 chuẩn ma trận GDPT 2018 về [${chapter}] chuẩn 3 phần:
-1. 💡 Kiến thức cần nhớ.
-2. 📝 Ví dụ minh họa có phương pháp giải.
-3. ✍️ Đề tự luyện: 12 câu trắc nghiệm tương tác 4 mức độ nhận thức (đính kèm [QUIZ_DATA]) và 3 câu tự luận.
-🔴 LƯU Ý SƯ PHẠM: Đóng kín toàn bộ hướng dẫn giải tự luận và ma trận thang điểm trong thẻ thu gọn:
-<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày các bước giải chi tiết & thang điểm]</div></details> để học sinh tự làm trước.`);
+        sendQuickPrompt(`Hãy biên soạn một ĐỀ KIỂM TRA CUỐI KỲ / HỌC KỲ (90 PHÚT) MÔN TOÁN 8 CHUẨN ĐỊNH DẠNG CÔNG VĂN 7991 CỦA BỘ GD&ĐT tổng hợp kiến thức từ các chương: [${chaptersListStr}].
+Cấu trúc đề thi BẮT BUỘC gồm đúng 4 phần:
+- PHẦN I: TRẮC NGHIỆM NHIỀU LỰA CHỌN (12 CÂU - 3,0 ĐIỂM)
+  (12 câu hỏi trắc nghiệm 4 lựa chọn A, B, C, D phân hóa 4 mức độ nhận thức, đính kèm [QUIZ_DATA]).
+- PHẦN II: TRẮC NGHIỆM ĐÚNG SAI (2 CÂU - 2,0 ĐIỂM)
+  (2 câu hỏi tình huống toán học, mỗi câu có 4 ý a, b, c, d để học sinh xét Đúng/Sai).
+- PHẦN III: TRẮC NGHIỆM TRẢ LỜI NGẮN (4 CÂU - 2,0 ĐIỂM)
+  (4 câu hỏi yêu cầu giải toán, kết quả là 1 số tối đa 4 ký tự).
+- PHẦN IV: TỰ LUẬN (4 CÂU - 3,0 ĐIỂM)
+  (4 câu tự luận tổng hợp Đại số & Hình học phân loại học sinh giỏi).
+
+🔴 LƯU Ý SƯ PHẠM:
+- Chỉ hiển thị nội dung đề bài để học sinh tự làm và tải file về máy.
+- Đóng kín toàn bộ Hướng dẫn giải chi tiết, ma trận đáp án và thang điểm trong thẻ thu gọn:
+<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày ma trận đáp án Phần I, II, III và lời giải chi tiết Phần IV]</div></details>.`);
       }
     }
 
     function submitCustomExamRequest() {
-      const chapter = document.getElementById('exam-chapter-select').value;
-      const level = document.getElementById('exam-level-select').value;
+      const chapters = getSelectedExamChapters();
+      const chaptersListStr = chapters.join(', ');
+      const level = document.getElementById('exam-level-select')?.value || 'Mức 2: Thông hiểu';
       toggleExamBankModal();
-      sendQuickPrompt(`Hãy biên soạn nội dung tự học môn Toán 8 thuộc [${chapter}] ở [${level}] chuẩn 3 phần:
-1. 💡 Kiến thức cần nhớ.
-2. 📝 Ví dụ minh họa có phân tích cách tư duy.
-3. ✍️ Bài tập tương tự: gồm 3 câu trắc nghiệm tương tác (đính kèm [QUIZ_DATA]) và 1 bài tự luận rèn luyện.
-🔴 LƯU Ý SƯ PHẠM: Đóng kín toàn bộ hướng dẫn giải tự luận trong thẻ thu gọn:
-<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày các bước giải chi tiết & thang điểm]</div></details> để học sinh tự làm bài trước.`);
+      sendQuickPrompt(`Hãy biên soạn một ĐỀ KIỂM TRA TỰ LUYỆN MÔN TOÁN 8 tổng hợp từ các chương [${chaptersListStr}] ở [${level}] chuẩn định dạng Công văn 7991 gồm:
+- PHẦN I: 6 câu trắc nghiệm nhiều lựa chọn (đính kèm [QUIZ_DATA]).
+- PHẦN II: 1 câu trắc nghiệm đúng sai (4 ý a, b, c, d).
+- PHẦN III: 2 câu trắc nghiệm trả lời ngắn (kết quả số tối đa 4 ký tự).
+- PHẦN IV: 2 câu tự luận rèn luyện phương pháp.
+🔴 LƯU Ý SƯ PHẠM: Chỉ hiển thị nội dung đề bài. Khóa toàn bộ hướng dẫn giải trong thẻ:
+<details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày đáp án và lời giải chi tiết]</div></details>.`);
     }
 
     // ==========================================
@@ -4617,7 +4749,17 @@ mindmap
    🔴 TUYỆT ĐỐI KHÔNG để lộ lời giải/đáp án bài tự luyện ngay từ đầu!
    Mọi hướng dẫn giải chi tiết, cách tư duy và thang điểm BẮT BUỘC phải đóng kín trong thẻ thu gọn:
    <details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Trình bày lời giải chi tiết từng bước và thang điểm tại đây]</div></details>
-   Học sinh phải tự suy nghĩ làm bài trước, sau khi hoàn thành mới bấm mở xem hướng dẫn giải.`;
+   Học sinh phải tự suy nghĩ làm bài trước, sau khi hoàn thành mới bấm mở xem hướng dẫn giải.
+8. QUY CHUẨN ĐỀ THI GIỮA KỲ (45P) & CUỐI KỲ (90P) CHUẨN CÔNG VĂN 7991 BỘ GD&ĐT:
+   Khi tạo Đề thi Giữa kỳ (45 phút) hoặc Cuối kỳ / Học kỳ (90 phút):
+   - Đảm bảo bao quát kiến thức ít nhất từ 2 đến 3 chương học sinh/giáo viên đã chọn.
+   - BẮT BUỘC tuân thủ cấu trúc 4 phần theo Công văn 7991:
+     + PHẦN I: TRẮC NGHIỆM NHIỀU LỰA CHỌN (12 câu - 3,0 điểm, đính kèm [QUIZ_DATA] 4 phương án A, B, C, D).
+     + PHẦN II: TRẮC NGHIỆM ĐÚNG SAI (2 câu - 2,0 điểm, mỗi câu có 4 khẳng định a, b, c, d để xét Đúng/Sai).
+     + PHẦN III: TRẮC NGHIỆM TRẢ LỜI NGẮN (4 câu - 2,0 điểm, kết quả là dạng số tối đa 4 ký tự bao gồm dấu phẩy và dấu trừ).
+     + PHẦN IV: TỰ LUẬN (4 câu - 3,0 điểm, rèn luyện kỹ năng trình bày, hình học và thực tế).
+   - Phần đề thi CHỈ HIỂN THỊ NỘI DUNG ĐỀ BÀI ĐỂ LÀM & TẢI VỀ MÁY. Khóa toàn bộ đáp án 4 phần trong thẻ:
+   <details class="solution-spoiler-card"><summary class="solution-summary-btn">🔑 Bấm để xem Hướng dẫn giải chi tiết & Đáp án (Sau khi em đã tự làm xong)</summary><div class="solution-content-body">[Bảng đáp án Phần I, II, III và Lời giải chi tiết + Thang điểm Phần IV]</div></details>.`;
     }
 
     function getCompressedHistory(messages) {
@@ -5304,23 +5446,132 @@ mindmap
     }
 
     function downloadAsDoc(text) {
+      if (!text) return;
+
+      // Xử lý QUIZ_DATA thành định dạng câu hỏi in ấn dễ đọc trên Word
+      let printableText = (text || '').replace(/\[QUIZ_DATA:\s*(\{.*?\})\]/gs, (match, jsonStr) => {
+        try {
+          const q = JSON.parse(jsonStr);
+          let optHtml = '';
+          if (Array.isArray(q.options)) {
+            optHtml = '<br>' + q.options.join('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+          }
+          return `\n\n**${q.question || ''}**${optHtml}\n\n`;
+        } catch (e) {
+          return '';
+        }
+      });
+
+      // Render KaTeX và Markdown thành HTML chuẩn
+      const parsedBody = renderMathAndMarkdown(printableText);
+
       const htmlContent = `
         <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-        <head><meta charset='utf-8'><title>Toan 8 - tailieugdso.vn</title></head>
-        <body style="font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.5;">
-          ${marked.parse(text)}
+        <head>
+          <meta charset='utf-8'>
+          <title>Đề Kiểm Tra Toán 8 - Trường THCS Quang Trung Đà Lạt</title>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+          <style>
+            @page {
+              size: 21cm 29.7cm; /* Khổ giấy A4 */
+              margin: 2cm 2cm 2cm 2cm;
+            }
+            body {
+              font-family: 'Times New Roman', Times, serif;
+              font-size: 13pt;
+              line-height: 1.5;
+              color: #000000;
+            }
+            table {
+              border-collapse: collapse;
+              width: 100%;
+              margin: 12px 0;
+            }
+            th, td {
+              border: 1px solid #000000;
+              padding: 6px 10px;
+              font-size: 12pt;
+            }
+            .header-box td {
+              border: none !important;
+              padding: 4px;
+            }
+            .katex {
+              font-size: 1.1em;
+              font-family: 'Times New Roman', serif;
+            }
+            .katex-display {
+              margin: 10px 0;
+              text-align: center;
+            }
+            h1, h2, h3, h4 {
+              font-family: 'Times New Roman', serif;
+              color: #000000;
+              margin-top: 14px;
+              margin-bottom: 6px;
+            }
+            .solution-spoiler-card {
+              border: 1px solid #4f46e5;
+              padding: 14px;
+              margin: 20px 0;
+              background-color: #f8fafc;
+              page-break-before: always;
+            }
+            .solution-summary-btn {
+              font-weight: bold;
+              color: #3730a3;
+              margin-bottom: 8px;
+            }
+          </style>
+        </head>
+        <body>
+          <table class="header-box" style="width: 100%; border: none; margin-bottom: 12px;">
+            <tr>
+              <td style="width: 45%; text-align: center; vertical-align: top; border: none;">
+                <strong>PHÒNG GD&ĐT THÀNH PHỐ ĐÀ LẠT</strong><br>
+                <strong>${escapeHtml((studentProfile.school || 'TRƯỜNG THCS QUANG TRUNG').toUpperCase())}</strong><br>
+                <em>Tổ Tự Nhiên - Cổng tailieugdso.vn</em>
+              </td>
+              <td style="width: 55%; text-align: center; vertical-align: top; border: none;">
+                <strong>ĐỀ KIỂM TRA ĐỊNH KỲ MÔN TOÁN LỚP 8</strong><br>
+                <strong>CHUẨN CẤU TRÚC CÔNG VĂN 7991/BGDĐT</strong><br>
+                <em>Năm học: 2025 - 2026 • Chương trình GDPT 2018</em>
+              </td>
+            </tr>
+          </table>
+
+          <div style="border: 1.5px solid #000; padding: 6px 10px; margin-bottom: 18px; font-size: 12pt;">
+            <table class="header-box" style="width: 100%; border: none;">
+              <tr>
+                <td style="border: none; width: 45%;"><strong>Họ và tên học sinh:</strong> ${escapeHtml(studentProfile.name)}</td>
+                <td style="border: none; width: 25%;"><strong>Lớp:</strong> ${escapeHtml(studentProfile.grade)}</td>
+                <td style="border: none; width: 30%;"><strong>Ngày làm bài:</strong> ${new Date().toLocaleDateString('vi-VN')}</td>
+              </tr>
+            </table>
+          </div>
+
+          <div>
+            ${parsedBody}
+          </div>
+
+          <div style="margin-top: 35px; text-align: center; font-style: italic; border-top: 1px dashed #666; padding-top: 15px;">
+            ------------------ HẾT ------------------<br>
+            <em>(Học sinh không được sử dụng tài liệu • Cán bộ coi thi không giải thích gì thêm)</em>
+          </div>
         </body>
         </html>
       `;
+
       const blob = new Blob(['\ufeff' + htmlContent], { type: 'application/msword' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Toan-8-TaiLieuGDSO-${Date.now()}.doc`;
+      a.download = `De-Kiem-Tra-Toan-8-CV7991-${Date.now()}.doc`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+      showToast('success', 'Đã tải đề thi Word! 📄', 'File Word định dạng Công văn 7991 kèm công thức chuẩn xác.');
     }
 
     function triggerFireworks() {
